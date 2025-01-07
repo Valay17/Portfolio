@@ -74,6 +74,10 @@
   .experience-sub-title {
     font-size: 1.25rem;
   }
+  .details-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically on smaller screens */
+  }
   .logo {
     font-size: 1.5rem;
   }
