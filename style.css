@@ -209,11 +209,15 @@ nav a:hover {
 /* SECTIONS */
 
 section {
-  padding-top: 4vh;
-  height: 96vh;
-  margin: 0 10rem;
-  box-sizing: border-box;
-  min-height: fit-content;
+  padding-top: 4vh;               /* Add space at the top */
+  min-height: 100vh;              /* Ensure the section takes at least 100% of the viewport height */
+  margin: 0 2rem;                 /* Use more responsive margins instead of 10rem */
+  box-sizing: border-box;         /* Prevent content overflow due to padding */
+  display: flex;                  /* Enable flexbox for content alignment */
+  flex-direction: column;         /* Stack content vertically */
+  justify-content: flex-start;    /* Align content to the top of the section */
+  align-items: stretch;           /* Stretch content to fill the section width */
+  overflow: hidden;               /* Prevent content overflow */
 }
 
 /* PROFILE SECTION */
