@@ -483,3 +483,8 @@ footer {
 footer p {
   text-align: center;
 }
+
+.spacer {
+  height: 10px;  /* Adjust the height of the spacer */
+  width: 100%;   /* Ensure it stretches across the full width */
+}
