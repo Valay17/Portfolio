@@ -373,6 +373,11 @@ section {
   height: 90%;
 }
 
+#icon-container {
+  display: flex;
+  justify-content: left;
+}
+
 .project-title {
   margin: 1rem;
   color: var(--secondary-color);

@@ -51,3 +51,80 @@ function setLightMode() {
     icon.src = icon.getAttribute("src-light");
   });
 }
+
+// Repo
+
+// Define GitHub repository URLs and custom names
+const repos = [
+  { repo: 'Valay17/SIPHI--Speech-Improvement-for-People-with-Hearing-Impairment-using-Visual-Aid', customName: 'SIPHI – Speech Improvement for People with Hearing Impairment using Visual Aid' }, // Custom name for this repository
+  { repo: 'Valay17/MIBA--Mobile-Image-Based-Authentication-on-Android-Devices', customName: 'MIBA – Mobile Image-Based Authentication on Android Devices' }, // Custom name
+  { repo: 'Valay17/DISHA--Deep-Learning-based-Cyclone-Intensity-Estimation-with-NLP-based-Report-Generation', customName: 'DISHA - Deep Learning based Cyclone Intensity Estimation with NLP based Report Generation' }  // Custom name
+];
+
+// Function to fetch repository data from GitHub API and place it in a specified container
+async function fetchRepoData(repoInfo, targetId) {
+  try {
+    const url = `https://api.github.com/repos/${repoInfo.repo}`;
+    const response = await fetch(url);
+
+    // Check if the response is successful
+    if (!response.ok) {
+      if (response.status === 404) {
+        // If repository is not found, show custom message with repoInfo.customName
+        const targetContainer = document.getElementById(targetId);
+        if (!targetContainer) {
+          throw new Error(`Container with ID ${targetId} not found.`);
+        }
+
+        const errorItem = document.createElement('div');
+        errorItem.classList.add('repo-item');
+        errorItem.innerHTML = `
+          <h2>Repository: ${repoInfo.customName}</h2>
+          <p>Repository not found or another issue occurred.</p>
+        `;
+        targetContainer.appendChild(errorItem);
+        return; // Stop further processing if repository is not found
+      }
+      throw new Error('Repository not found');
+    }
+
+    const data = await response.json();
+
+    // Find the target container by ID
+    const targetContainer = document.getElementById(targetId);
+    if (!targetContainer) {
+      throw new Error(`Container with ID ${targetId} not found.`);
+    }
+
+    // Create a div element for each repository and insert the content directly
+    const repoItem = document.createElement('div');
+    repoItem.classList.add('repo-item');  // Apply the same styling class
+
+    repoItem.innerHTML = `
+      <h2><a href="${data.html_url}" target="_blank">${repoInfo.customName}</a></h2>
+    `;
+
+    // Append the repository content directly to the specified target container
+    targetContainer.appendChild(repoItem);
+
+  } catch (error) {
+    // Handle other errors (e.g., network issue)
+    const targetContainer = document.getElementById(targetId);
+    if (!targetContainer) {
+      throw new Error(`Container with ID ${targetId} not found.`);
+    }
+
+    const errorItem = document.createElement('div');
+    errorItem.classList.add('repo-item');
+    errorItem.innerHTML = `
+      <h2>Repository: ${repoInfo.customName}</h2>
+      <p>Repository not found or another issue occurred.</p>
+    `;
+    targetContainer.appendChild(errorItem);
+  }
+}
+
+// Call the fetchRepoData function for each repository, specifying where to place the content
+fetchRepoData({ repo: 'Valay17/SIPHI--Speech-Improvement-for-People-with-Hearing-Impairment-using-Visual-Aid', customName: 'SIPHI – Speech Improvement for People with Hearing Impairment using Visual Aid' }, 'repo-section-1'); 
+fetchRepoData({ repo: 'Valay17/MIBA--Mobile-Image-Based-Authentication-on-Android-Devices', customName: 'MIBA – Mobile Image-Based Authentication on Android Devices' }, 'repo-section-2');
+fetchRepoData({ repo: 'Valay17/DISHA--Deep-Learning-based-Cyclone-Intensity-Estimation-with-NLP-based-Report-Generation', customName: 'DISHA - Deep Learning based Cyclone Intensity Estimation with NLP based Report Generation' }, 'repo-section-3');
