@@ -49,6 +49,35 @@
 }
 
 @media screen and (max-width: 600px) {
+  #desktop-nav {
+    display: none;
+  }
+  #hamburger-nav {
+    display: flex;
+  }
+
+  .menu-links {
+    left: 0;
+    right: 0;
+    width: 100%; /* Ensure the dropdown menu is full width */
+  }
+
+  .hamburger-icon {
+    height: 30px;
+    width: 25px;
+  }
+
+  .menu-links a {
+    padding: 10px;
+    font-size: 1.25rem;
+  }
+
+  /* Hamburger icon styling on very small screens */
+  .hamburger-icon span {
+    height: 3px; /* Thicker lines for the icon */
+    background-color: var(--hamburger-icon-color);
+  }
+
   #contact,
   footer {
     height: 40vh;

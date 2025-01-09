@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-/*Light Mode */
+/* Light Mode */
 [theme="light"] {
   --primary-color: white;
   --primary-color-2: rgb(255, 255, 255);
@@ -14,9 +14,13 @@
   --button-border-2: rgb(86, 156, 214) 0.1rem solid;
   --container-border: rgb(163, 163, 163);
   --hamburger-icon-color: black;
+
+  /* Update navbar background for light mode */
+  --navbar-background-light: rgba(255, 255, 255, 1); /* Fully opaque navbar */
+  --navbar-background-light-shrink: rgba(255, 255, 255, 0.9); /* Slight transparency when shrunk */
 }
 
-/*Default Dark Mode */
+/* Default Dark Mode */
 :root {
   --primary-color: black;
   --primary-color-2: rgb(0, 0, 0);
@@ -30,6 +34,10 @@
   --button-border-2: rgb(86, 156, 214) 0.1rem solid;
   --container-border: rgb(92, 92, 92);
   --hamburger-icon-color: white;
+
+  /* Keep original transparency for dark mode */
+  --navbar-background-dark: rgba(0, 0, 0, 0.3); /* Dark mode transparency */
+  --navbar-background-dark-shrink: rgba(0, 0, 0, 0.9); /* Less transparent when shrunk in dark mode */
 }
 
 * {
@@ -65,34 +73,68 @@ a,
 
 /* DESKTOP NAV */
 
+
 nav,
-.nav-links {
-  display: flex;
-  align-items: center;
+.nav-links,
+.hamburger-menu {
+  max-width: 100%;  /* Ensure navbar and menu don't extend beyond viewport */
+  box-sizing: border-box;  /* Include padding/borders in width calculation */
 }
 
 nav {
-  justify-content: space-around;
-  height: 17vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  position: sticky;
+  top: 0;
+  width: 100%;  /* Ensure the navbar takes up 100% of the viewport width */
+  z-index: 1000;
+  transition: all 0.3s ease;
+  background-color: var(--navbar-background-light);
+  box-shadow: var(--navbar-box-shadow-light);
+  box-sizing: border-box;  /* Include padding in width calculation */
 }
 
+/* Dark mode navbar */
+[theme="dark"] nav {
+  background-color: var(--navbar-background-dark);
+  box-shadow: var(--navbar-box-shadow-dark);
+}
+
+/* Shrink navbar on scroll */
+nav.shrink {
+  padding: 0.5rem 2rem;
+  background-color: var(--navbar-background-light-shrink); /* Use light mode shrink background */
+  box-shadow: var(--navbar-box-shadow-light); /* Light mode shadow when shrunk */
+}
+
+[theme="dark"] nav.shrink {
+  background-color: var(--navbar-background-dark-shrink); /* Use dark mode shrink background */
+  box-shadow: var(--navbar-box-shadow-dark); /* Dark mode shadow when shrunk */
+}
+
+/* Logo styles */
+nav .logo {
+  font-size: 2rem;
+  color: var(--secondary-color);
+}
+
+nav.shrink .logo {
+  font-size: 1.5rem;
+}
+
+/* Navigation Links */
 .nav-links {
+  display: flex;
   gap: 2rem;
   list-style: none;
   font-size: 1.2rem;
 }
 
-nav li:last-child {
-  width: max-content;
-  display: flex;
-  margin: auto;
-  padding: 10px;
-}
-
-a {
+.nav-links a {
   color: var(--secondary-color);
   text-decoration: none;
-  text-decoration-color: var(--primary-color);
 }
 
 a:hover {
@@ -103,7 +145,6 @@ a:hover {
 
 nav a:hover {
   color: var(--secondary-color-2);
-  text-decoration-color: var(--secondary-color-2);
 }
 
 .logo {
@@ -116,11 +157,60 @@ nav a:hover {
 }
 
 /* HAMBURGER MENU */
-
 #hamburger-nav {
-  display: none;
+  display: none; /* Default hidden for larger screens */
 }
 
+/* Base styles for the menu */
+.menu-links {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--primary-color); /* Background color based on theme */
+  width: fit-content;  /* Adjust width based on content */
+  max-height: 0;  /* Start with the menu collapsed */
+  visibility: hidden;  /* Ensure the menu is not visible when collapsed */
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out, visibility 0s 0.3s; /* Smooth transition */
+  border: 1px solid rgba(200, 200, 200, 0.3); /* Light grey border visible in both modes */
+  border-radius: 8px;  /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(200, 200, 200, 0.2); /* Light grey shadow for a soft effect */
+  display: block;  /* Ensure the menu is a block element */
+  text-align: center;
+}
+
+/* When the menu is open, it expands */
+.menu-links.open {
+  max-height: 600px;  /* Adjust based on the number of items */
+  visibility: visible;  /* Ensure the menu is visible when open */
+  padding-top: 10px;  /* Adds space between the first item and the top of the menu */
+}
+
+/* Styles for the menu items (links) */
+.menu-links a {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--secondary-color); /* Text color based on theme */
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap;  /* Prevent text from wrapping inside links */
+}
+
+/* List item styles */
+.menu-links li {
+  list-style: none;
+  box-shadow: 0 2px 0 0 rgba(200, 200, 200, 0.3);  /* Light grey separator line */
+}
+
+/* Remove the bottom border of the last item */
+.menu-links li:last-child {
+  box-shadow: none;  /* Remove the line on the last item */
+}
+
+
+/* Hamburger menu styles */
 .hamburger-menu {
   position: relative;
   display: inline-block;
@@ -140,52 +230,8 @@ nav a:hover {
   width: 100%;
   height: 2px;
   background-color: var(--hamburger-icon-color);
-  transition: all 0.3 ease-in-out;
-  position: relative;
-}
-
-/* Base styles for the menu */
-.menu-links {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: var(--primary-color); /* Background color based on theme */
-  width: fit-content;  /* Adjust width based on content */
-  max-height: 0;  /* Start with the menu collapsed */
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
-  border: 1px solid rgba(200, 200, 200, 0.3); /* Light grey border visible in both modes */
-  border-radius: 8px;  /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(200, 200, 200, 0.2);  /* Light grey shadow for a soft effect */
-}
-
-/* Styles for the menu items (links) */
-.menu-links a {
-  display: block;
-  padding: 10px;
-  text-align: center;
-  font-size: 1.5rem;
-  color: var(--secondary-color); /* Text color based on theme */
-  text-decoration: none;
   transition: all 0.3s ease-in-out;
-}
-
-/* List item styles */
-.menu-links li {
-  list-style: none;
-  white-space: nowrap;
-  box-shadow: 0 2px 0 0 rgba(200, 200, 200, 0.3);  /* Light grey separator line */
-}
-
-/* Remove the bottom border of the last item */
-.menu-links li:last-child {
-  box-shadow: none;  /* Remove the line on the last item */
-}
-
-/* When the menu is open, it expands */
-.menu-links.open {
-  max-height: 600px;  /* Adjust based on the number of items */
-  padding-top: 10px;  /* Adds space between the first item and the top of the menu */
+  position: relative;
 }
 
 .hamburger-icon.open span:first-child {
@@ -206,6 +252,7 @@ nav a:hover {
   transform: none;
   opacity: 1;
 }
+
 /* SECTIONS */
 
 section {
@@ -234,6 +281,7 @@ section {
   height: 400px;
   width: 400px;
   margin: auto 0;
+  align-self: center;
 }
 
 .section__text {
@@ -372,6 +420,22 @@ section {
   line-height: 2; /* Increases the space between lines */
 }
 
+.exp-details-container {
+  display: flex;
+  padding: 1.5rem;
+  background: var(--primary-color-2);
+  border-radius: 2rem;
+  border: var(--button-border);
+  border-color: var(--container-border);
+  text-align: center;
+  color: var(--secondary-color);
+  flex-direction: column; /* Default flex direction for smaller screens */
+  width: auto; /* Allows the container to shrink to fit its content */
+  max-width: 100%; /* Prevents it from expanding beyond its parent's width */
+  box-sizing: border-box; /* Ensures padding is included in the width/height calculation */
+  flex-grow: 0; /* Prevents the container from growing to fill the space */
+  flex-shrink: 1; /* Allows the container to shrink to fit its content */
+}
 
 /* PROJECTS SECTION */
 

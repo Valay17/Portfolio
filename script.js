@@ -52,6 +52,22 @@ function setLightMode() {
   });
 }
 
+const navbar = document.querySelector('nav');
+
+// Listen for the scroll event
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('nav');
+  const hamburgerIcon = document.querySelector('.hamburger-icon');
+  
+  if (window.scrollY > 100) {  // You can change the scroll position threshold
+    navbar.classList.add('shrink');
+    hamburgerIcon.classList.add('shrink');  // Apply shrink to hamburger icon as well
+  } else {
+    navbar.classList.remove('shrink');
+    hamburgerIcon.classList.remove('shrink');  // Remove shrink effect
+  }
+});
+
 // Repo
 
 // Define GitHub repository URLs and custom names
