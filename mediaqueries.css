@@ -136,13 +136,14 @@
     font-size: 1.25rem;
   }
   .title {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   .text-container {
     text-align: justify;
   }
   .list-container {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr; /* Collapse to 1 column on small screens */
   }
   .scroll-btn {
     bottom: 10px;
@@ -155,4 +156,10 @@
     height: 30px;
   }
 }
+
+@media screen and (max-width: 599px) {
+  .list-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Collapse to 1 column on small screens */
+  }
 }
