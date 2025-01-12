@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&family=Headland+One&family=Martian+Mono:wght@100..800&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Rhodium+Libre&family=Shippori+Antique&display=swap');
 /* Light Mode */
 [theme="light"] {
   --primary-color: white;
@@ -50,7 +49,7 @@ h3 {
 }
 
 body {
-  font-family: "Roboto", serif;
+  font-family: "Gabarito", serif;
   font-weight: 500;
   font-style: normal;
   background-color: var(--background-color);
@@ -118,6 +117,7 @@ nav.shrink {
 nav .logo {
   font-size: 2rem;
   color: var(--secondary-color);
+  font-family: "Gabarito", serif;
 }
 
 nav.shrink .logo {
@@ -134,6 +134,7 @@ nav.shrink .logo {
 
 .nav-links a {
   color: var(--secondary-color);
+  font-family: "Rhodium Libre", serif;
   text-decoration: none;
 }
 
@@ -160,59 +161,9 @@ nav a:hover {
 #hamburger-nav {
   display: none; /* Default hidden for larger screens */
 }
-
-/* Base styles for the menu */
-.menu-links {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: var(--primary-color); /* Background color based on theme */
-  width: fit-content;  /* Adjust width based on content */
-  max-height: 0;  /* Start with the menu collapsed */
-  visibility: hidden;  /* Ensure the menu is not visible when collapsed */
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out, visibility 0s 0.3s; /* Smooth transition */
-  border: 1px solid rgba(200, 200, 200, 0.3); /* Light grey border visible in both modes */
-  border-radius: 8px;  /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(200, 200, 200, 0.2); /* Light grey shadow for a soft effect */
-  display: block;  /* Ensure the menu is a block element */
-  text-align: center;
-}
-
-/* When the menu is open, it expands */
-.menu-links.open {
-  max-height: 600px;  /* Adjust based on the number of items */
-  visibility: visible;  /* Ensure the menu is visible when open */
-  padding-top: 10px;  /* Adds space between the first item and the top of the menu */
-}
-
-/* Styles for the menu items (links) */
-.menu-links a {
-  display: block;
-  padding: 10px;
-  text-align: center;
-  font-size: 1.5rem;
-  color: var(--secondary-color); /* Text color based on theme */
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  white-space: nowrap;  /* Prevent text from wrapping inside links */
-}
-
-/* List item styles */
-.menu-links li {
-  list-style: none;
-  box-shadow: 0 2px 0 0 rgba(200, 200, 200, 0.3);  /* Light grey separator line */
-}
-
-/* Remove the bottom border of the last item */
-.menu-links li:last-child {
-  box-shadow: none;  /* Remove the line on the last item */
-}
-
-
-/* Hamburger menu styles */
+/* Base styles for the hamburger menu */
 .hamburger-menu {
-  position: relative;
+  position: relative;  /* Ensures that the dropdown menu positions relative to this container */
   display: inline-block;
 }
 
@@ -234,6 +185,7 @@ nav a:hover {
   position: relative;
 }
 
+/* Hamburger icon transforms when it's clicked (to an 'X' state) */
 .hamburger-icon.open span:first-child {
   transform: rotate(45deg) translate(6px, 6px);
   transform-origin: left center;
@@ -248,10 +200,56 @@ nav a:hover {
   transform-origin: left center;
 }
 
-.hamburger-icon span {
-  transform: none;
-  opacity: 1;
+/* Menu dropdown container */
+.menu-links {
+  display: flex;  /* Flexbox for stacking items vertically */
+  flex-direction: column;
+  position: absolute;  /* Absolute positioning relative to the hamburger-menu */
+  top: 100%;  /* Position right below the hamburger icon */
+  right: 0;   /* Align the dropdown to the right side of the hamburger icon */
+  background-color: var(--primary-color);
+  width: 200px;  /* Set width of dropdown (can be adjusted as needed) */
+  height: 0;  /* Initially collapsed */
+  overflow: hidden;
+  visibility: hidden; /* Hidden by default */
+  transition: height 0.3s ease-in-out, visibility 0s 0.3s; /* Smooth transition for height */
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(200, 200, 200, 0.2);
+  text-align: center;
 }
+
+.menu-links.open {
+  height: auto;  /* Allow it to expand naturally based on its content */
+  visibility: visible;  /* Make it visible when opened */
+  padding-top: 10px;  /* Add space above the menu items */
+}
+
+/* Styles for the menu items (links) */
+.menu-links a {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  white-space: normal;
+  font-family: "Rhodium Libre", serif;
+  flex-shrink: 0;  /* Prevent shrinking of links */
+}
+
+/* List item styles */
+.menu-links li {
+  list-style: none;
+  box-shadow: 0 2px 0 0 rgba(200, 200, 200, 0.3);  /* Light grey separator line */
+}
+
+/* Remove the bottom border of the last item */
+.menu-links li:last-child {
+  box-shadow: none;  /* Remove the line on the last item */
+}
+
 
 /* SECTIONS */
 
@@ -296,18 +294,21 @@ section {
 .section__text__p1 {
   text-align: center;
   margin-bottom: 0.7rem;
+  font-family: "Martian Mono", serif;
 }
 
 .section__text__p2 {
   font-size: 1.75rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  font-family: "Rhodium Libre", serif;
 }
 
 .title {
   color: var(--secondary-color);
-  font-size: 3rem;
+  font-size: 4rem;
   text-align: center;
+  font-family: "Headland One", serif;
 }
 
 #socials-container {
@@ -344,6 +345,8 @@ section {
 .btn-color-2 {
   border: var(--button-border);
   color: var(--secondary-color-2);
+  font-family: "Philosopher", serif;
+  font-size: 15px;
 }
 
 .btn-color-1:hover,
@@ -385,6 +388,11 @@ section {
   box-sizing: border-box;
   width: 100%; /* Ensure it takes up the available width */
   gap: 20px;
+  font-family: "Rhodium Libre", serif;
+}
+
+.section__text__p4{
+  font-family: "Martian Mono", serif;
 }
 
 .gap {
@@ -427,6 +435,8 @@ section {
   margin-bottom: 1rem;
   text-align: justify;  
   line-height: 2; /* Increases the space between lines */
+  font-size: 18px;
+  font-family: "Rhodium Libre", serif;
 }
 
 /* Experience Section - Flexbox items (exp-details-container) */
@@ -446,6 +456,7 @@ section {
   flex-grow: 0;
   flex-shrink: 1;
   transition: all 0.3s ease-in-out; /* Smooth transition effect */
+  font-family: "Martian Mono", serif;
 }
 
 /* Hover effect for the experience container */
@@ -459,6 +470,14 @@ section {
 
 #projects {
   position: relative;
+}
+
+.article-container{
+  font-family: "Martian Mono", serif;
+}
+
+.p-title{
+  font-family: "Martian Mono", serif;
 }
 
 /* Projects Section - Flexbox items (project containers) */
@@ -522,6 +541,7 @@ section {
   gap: 20px;
   width: 100%; /* Ensure the grid takes full width of flex container */
   margin: 0 auto;
+  font-family: "Shippori Antique", serif;
 }
 
 .item {
