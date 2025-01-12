@@ -5,7 +5,7 @@ function toggleMenu() {
   icon.classList.toggle("open");
 }
 
-// Dark / light mode
+// Dark / Light Mode toggle
 
 const btn = document.getElementById("modeToggle");
 const btn2 = document.getElementById("modeToggle2");
@@ -52,11 +52,29 @@ function setLightMode() {
   });
 }
 
+// Scroll-to-Top Button functionality
+
+const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+// Listen for the scroll event to show the button when the user scrolls down even slightly
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 10) { // Any scroll, even a small amount, will show the button
+    scrollToTopBtn.classList.add("show");
+  } else {
+    scrollToTopBtn.classList.remove("show"); // Hide the button when at the top
+  }
+});
+
+// Scroll to top when the button is clicked
+scrollToTopBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Shrink navbar on scroll
 const navbar = document.querySelector('nav');
 
 // Listen for the scroll event
 window.addEventListener('scroll', () => {
-  const navbar = document.querySelector('nav');
   const hamburgerIcon = document.querySelector('.hamburger-icon');
   
   if (window.scrollY > 100) {  // You can change the scroll position threshold

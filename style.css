@@ -272,7 +272,7 @@ section {
 #profile {
   display: flex;
   justify-content: center;
-  gap: 5rem;
+  gap: 3rem;
   height: 80vh;
 }
 
@@ -280,7 +280,7 @@ section {
   display: flex;
   height: 400px;
   width: 400px;
-  margin: auto 0;
+  margin: 1rem 0;
   align-self: center;
 }
 
@@ -398,13 +398,22 @@ section {
   flex-shrink: 0;
   background: var(--primary-color-2);
   border-radius: 2rem;
-  border: var(--button-border);
-  border-color: var(--container-border);
+  border: 1px solid rgba(200, 200, 200, 0.3); /* Same border style as in the hamburger menu */
+  border-color: var(--container-border); /* Border color */
+  box-shadow: 0 4px 10px rgba(200, 200, 200, 0.2); /* Light grey shadow similar to the dropdown */
   text-align: center;
   color: var(--secondary-color);
-  flex-direction: column; /* Default flex direction for smaller screens */
-  width: 100%; /* Ensure it fills the available width */
-  box-sizing: border-box; /* Prevent overflow issues */
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+/* Hover effect for the .details-container to apply similar effect as the menu dropdown */
+.details-container:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Darker shadow on hover */
+  border-color: var(--secondary-color-2); /* Change border color on hover */
+  border: 3px solid var(--secondary-color-2)
 }
 
 .details-container > .box {
@@ -420,21 +429,30 @@ section {
   line-height: 2; /* Increases the space between lines */
 }
 
+/* Experience Section - Flexbox items (exp-details-container) */
 .exp-details-container {
   display: flex;
   padding: 1.5rem;
   background: var(--primary-color-2);
   border-radius: 2rem;
-  border: var(--button-border);
+  border: 1px solid rgba(200, 200, 200, 0.3); /* Same border style as the menu */
   border-color: var(--container-border);
   text-align: center;
   color: var(--secondary-color);
-  flex-direction: column; /* Default flex direction for smaller screens */
-  width: auto; /* Allows the container to shrink to fit its content */
-  max-width: 100%; /* Prevents it from expanding beyond its parent's width */
-  box-sizing: border-box; /* Ensures padding is included in the width/height calculation */
-  flex-grow: 0; /* Prevents the container from growing to fill the space */
-  flex-shrink: 1; /* Allows the container to shrink to fit its content */
+  flex-direction: column;
+  width: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex-grow: 0;
+  flex-shrink: 1;
+  transition: all 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+/* Hover effect for the experience container */
+.exp-details-container:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Darker shadow on hover */
+  border-color: var(--secondary-color-2); /* Change border color on hover */
+  border: 3px solid var(--secondary-color-2)
 }
 
 /* PROJECTS SECTION */
@@ -443,9 +461,22 @@ section {
   position: relative;
 }
 
+/* Projects Section - Flexbox items (project containers) */
 .color-container {
   border-color: var(--container-border);
   background: var(--primary-color-2);
+  padding: 1.5rem;
+  border-radius: 2rem;
+  box-shadow: 0 4px 10px rgba(200, 200, 200, 0.2); /* Same shadow effect as the menu */
+  border: 1px solid rgba(200, 200, 200, 0.3); /* Same border style as the menu */
+  transition: all 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+/* Hover effect for the project container */
+.color-container:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Darker shadow on hover */
+  border-color: var(--secondary-color-2); /* Change border color on hover */
+  border: 3px solid var(--secondary-color-2)
 }
 
 .project-img {
@@ -493,23 +524,38 @@ section {
   margin: 0 auto;
 }
 
-.item 
-{
+.item {
   padding: 20px;
   text-align: center;
   font-size: 16px;
+  transition: all 0.3s ease-in-out; /* Smooth transition for text effects */
 }
 
+/* Hover effect for Coursework items (only text) */
+.item:hover {
+  color: var(--secondary-color); /* Change text color on hover */
+  text-shadow: 0 0 1px var(--secondary-color); /* Glow effect on text */
+  font-size: 18px;
+}
 
 /* CONTACT */
+
+.contact-gap {
+  height: 200px;  /* Adjust this value to control the space between the top and contact section */
+  width: 100%;    /* Make it full width of the section */
+  box-sizing: border-box;
+}
 
 #contact {
   display: flex;
   justify-content: center;
+  align-items: flex-start; /* Align at the top */
   flex-direction: column;
-  height: 70vh;
+  height: 100vh;
+  padding-top: 100px; /* Adds more space at the top */
 }
 
+/* Contact Info Upper Container */
 .contact-info-upper-container {
   display: flex;
   justify-content: center;
@@ -518,9 +564,19 @@ section {
   border-color: var(--container-border);
   background: var(--background-color);
   margin: 2rem auto;
-  padding: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(200, 200, 200, 0.2);
+  transition: all 0.3s ease-in-out;
 }
 
+/* Hover effect for the contact info container */
+.contact-info-upper-container:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Darker shadow on hover */
+  border-color: var(--secondary-color-2); /* Change border color on hover */
+  border: 3px solid var(--secondary-color-2)
+}
+
+/* Contact Info Container */
 .contact-info-container {
   display: flex;
   align-items: center;
@@ -529,10 +585,7 @@ section {
   margin: 1rem;
 }
 
-.contact-info-container p {
-  font-size: larger;
-}
-
+/* Icon */
 .contact-icon {
   cursor: default;
 }
@@ -555,4 +608,39 @@ footer p {
 .spacer {
   height: 10px;  /* Adjust the height of the spacer */
   width: 100%;   /* Ensure it stretches across the full width */
+}
+/* Initially hide the button */
+.scroll-btn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform 0.3s ease;  /* Smooth transition for scaling effect */
+}
+
+/* Show the button when the class 'show' is added */
+.scroll-btn.show {
+  display: block;
+}
+
+/* Hover effect for the scroll button */
+.scroll-btn:hover {
+  transform: scale(1.5); /* Slightly increase the size on hover */
+}
+
+/* Hover effect for the image inside the button */
+.scroll-btn img {
+  width: 30px; /* Adjust icon size */
+  height: 30px;
+  transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+}
+
+/* Hover effect on the image: reduce opacity slightly on hover */
+.scroll-btn:hover img {
+  opacity: 0.8;  /* Slightly fade the icon on hover */
 }
