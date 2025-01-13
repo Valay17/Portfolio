@@ -4,10 +4,10 @@ This is the repository for my personal portfolio website, where I showcase my sk
 
 ## Features
 
-- **Transparency, Shrink, and Sticky Navbar:** The navbar remains fixed at the top, shrinks when scrolling, and has a transparent effect when at the top of the page for an elegant design.
-- **Dark/Light Theme:** A toggle feature allowing users to switch between dark and light modes.
+- **Transparency, Shrink, and Sticky Navbar:** The navbar remains fixed at the top, shrinks when scrolling, and has a transparent effect when at the top of the page.
+- **Dark/Light Theme:** A toggle feature allowing users to switch between dark and light modes. Important for my fellow Dark Mode Devs!
 - **Responsive Mobile & Desktop Views:** The website adjusts its layout to ensure an optimal viewing experience across devices, from mobile phones to desktops.
-- **Click Listener for Menubar:** A click listener added to close the menu bar when clicking anywhere outside of the navigation, improving the overall user experience.
+- **Click Listener for Menubar:** A click listener is added to close the menu bar when clicking anywhere outside of the navigation, improving the overall user experience. This eliminates the need for users to click the close/cross button, which can often be annoying and adds an extra step.
 - **Scroll to Top:** A button that appears when you scroll down the page, allowing users to quickly return to the top.
 - **GitHub Linked Projects:** Links to my GitHub repositories from individual project sections for users to view the code behind each project.
 - **Hyperlinks:** Links to external websites and sections within the portfolio for easy navigation.
