@@ -119,8 +119,8 @@ const repos = [
   { repo: 'Valay17/5G-Internship-Report', customName: 'Providing Reliable Services to a Large Unpredictable Number of Devices using 5G' },  // 3
   { repo: 'Valay17/Cyber-Sec-Intern-Report', customName: 'Implementing and Configuring IDS/IPS for Network Security' },  // 4
   { repo: 'Valay17/SIPHI--Speech-Improvement-for-People-with-Hearing-Impairment-using-Visual-Aid', customName: 'SIPHI – Speech Improvement for People with Hearing Impairment using Visual Aid' }, // 5
-  { repo: 'Valay17/DISHA--Deep-Learning-based-Cyclone-Intensity-Estimation-with-NLP-based-Report-Generation', customName: 'DISHA - Deep Learning based Cyclone Intensity Estimation with NLP based Report Generation' }, // 6
-  { repo: 'Valay17/DupliCron--Metadata-Based-Incremental-File-Synchronization-and-Backup', customName: 'DupliCron - Metadata Based Incremental File Synchronization and Backup' }  // 7
+  { repo: 'Valay17/DISHA--Deep-Learning-based-Cyclone-Intensity-Estimation-with-NLP-based-Report-Generation', customName: 'DISHA – Deep Learning based Cyclone Intensity Estimation with NLP based Report Generation' }, // 6
+  { repo: 'Valay17/DupliCron--Metadata-Based-Incremental-File-Synchronization-and-Backup', customName: 'DupliCron – Metadata Based Incremental File Synchronization and Backup' } // 7
 ];
 
 // Function to fetch repository data from GitHub API and place it in a specified container
@@ -187,9 +187,10 @@ async function fetchRepoData(repoInfo, targetId) {
 }
 
 // Call the fetchRepoData function for each repository, specifying where to place the content
-fetchRepoData({ repo: 'Valay17/SIPHI--Speech-Improvement-for-People-with-Hearing-Impairment-using-Visual-Aid', customName: 'SIPHI – Speech Improvement for People with Hearing Impairment using Visual Aid' }, 'repo-section-1'); 
-fetchRepoData({ repo: 'Valay17/MIBA--Mobile-Image-Based-Authentication-on-Android-Devices', customName: 'MIBA – Mobile Image-Based Authentication on Android Devices' }, 'repo-section-2');
-fetchRepoData({ repo: 'Valay17/DISHA--Deep-Learning-based-Cyclone-Intensity-Estimation-with-NLP-based-Report-Generation', customName: 'DISHA - Deep Learning based Cyclone Intensity Estimation with NLP based Report Generation' }, 'repo-section-3');
+fetchRepoData({ repo: 'Valay17/MIBA--Mobile-Image-Based-Authentication-on-Android-Devices', customName: 'MIBA – Mobile Image-Based Authentication on Android Devices' }, 'repo-section-1');
+fetchRepoData({ repo: 'Valay17/AWS_Academy_Graduate-Cloud_Foundations', customName: 'AWS – Configuring Reverse Proxy Using Nginx' }, 'repo-section-2');
+fetchRepoData({ repo: 'Valay17/5G-Internship-Report', customName: 'Providing Reliable Services to a Large Unpredictable Number of Devices using 5G' }, 'repo-section-3');
 fetchRepoData({ repo: 'Valay17/Cyber-Sec-Intern-Report', customName: 'Implementing and Configuring IDS/IPS for Network Security' }, 'repo-section-4');
-fetchRepoData({ repo: 'Valay17/AWS_Academy_Graduate-Cloud_Foundations', customName: 'AWS – Configuring Reverse Proxy Using Nginx' }, 'repo-section-5');
-fetchRepoData({ repo: 'Valay17/5G-Internship-Report', customName: 'Providing Reliable Services to a Large Unpredictable Number of Devices using 5G' }, 'repo-section-6');
+fetchRepoData({ repo: 'Valay17/SIPHI--Speech-Improvement-for-People-with-Hearing-Impairment-using-Visual-Aid', customName: 'SIPHI – Speech Improvement for People with Hearing Impairment using Visual Aid' }, 'repo-section-5'); 
+fetchRepoData({ repo: 'Valay17/DISHA--Deep-Learning-based-Cyclone-Intensity-Estimation-with-NLP-based-Report-Generation', customName: 'DISHA - Deep Learning based Cyclone Intensity Estimation with NLP based Report Generation' }, 'repo-section-6');
+fetchRepoData({ repo: 'Valay17/DupliCron--Metadata-Based-Incremental-File-Synchronization-and-Backup', customName: 'DupliCron – Metadata Based Incremental File Synchronization and Backup' }, 'repo-section-7');
