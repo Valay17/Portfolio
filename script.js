@@ -114,12 +114,13 @@ function setLightMode() {
 
 // Define GitHub repository URLs and custom names
 const repos = [
-  { repo: 'Valay17/SIPHI--Speech-Improvement-for-People-with-Hearing-Impairment-using-Visual-Aid', customName: 'SIPHI – Speech Improvement for People with Hearing Impairment using Visual Aid' }, // Custom name for this repository
-  { repo: 'Valay17/MIBA--Mobile-Image-Based-Authentication-on-Android-Devices', customName: 'MIBA – Mobile Image-Based Authentication on Android Devices' }, // Custom name
-  { repo: 'Valay17/DISHA--Deep-Learning-based-Cyclone-Intensity-Estimation-with-NLP-based-Report-Generation', customName: 'DISHA - Deep Learning based Cyclone Intensity Estimation with NLP based Report Generation' }, // Custom name
-  { repo: 'Valay17/Cyber-Sec-Intern-Report', customName: 'Implementing and Configuring IDS/IPS for Network Security' },  // Custom name
-  { repo: 'Valay17/AWS_Academy_Graduate-Cloud_Foundations', customName: 'AWS – Configuring Reverse Proxy Using Nginx' },  // Custom name
-  { repo: 'Valay17/5G-Internship-Report', customName: 'Providing Reliable Services to a Large Unpredictable Number of Devices using 5G' }  // Custom name
+  { repo: 'Valay17/MIBA--Mobile-Image-Based-Authentication-on-Android-Devices', customName: 'MIBA – Mobile Image-Based Authentication on Android Devices' }, // 1
+  { repo: 'Valay17/AWS_Academy_Graduate-Cloud_Foundations', customName: 'AWS – Configuring Reverse Proxy Using Nginx' },  // 2
+  { repo: 'Valay17/5G-Internship-Report', customName: 'Providing Reliable Services to a Large Unpredictable Number of Devices using 5G' }  // 3
+  { repo: 'Valay17/Cyber-Sec-Intern-Report', customName: 'Implementing and Configuring IDS/IPS for Network Security' },  // 4
+  { repo: 'Valay17/SIPHI--Speech-Improvement-for-People-with-Hearing-Impairment-using-Visual-Aid', customName: 'SIPHI – Speech Improvement for People with Hearing Impairment using Visual Aid' }, // 5
+  { repo: 'Valay17/DISHA--Deep-Learning-based-Cyclone-Intensity-Estimation-with-NLP-based-Report-Generation', customName: 'DISHA - Deep Learning based Cyclone Intensity Estimation with NLP based Report Generation' }, // 6
+  { repo: 'Valay17/DupliCron--Metadata-Based-Incremental-File-Synchronization-and-Backup', customName: 'DupliCron - Metadata Based Incremental File Synchronization and Backup' }  // 7
 ];
 
 // Function to fetch repository data from GitHub API and place it in a specified container
