@@ -551,6 +551,13 @@ section {
   transition: all 0.3s ease-in-out; /* Smooth transition for text effects */
 }
 
+.list-header-item {
+  padding: 20px;
+  text-align: center;
+  font-size: 25px;
+  transition: all 0.3s ease-in-out; /* Smooth transition for text effects */
+}
+
 /* Hover effect for Coursework items (only text) */
 .item:hover {
   color: var(--secondary-color); /* Change text color on hover */
