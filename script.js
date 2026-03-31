@@ -194,3 +194,4 @@ fetchRepoData({ repo: 'Valay17/Cyber-Sec-Intern-Report', customName: 'Implementi
 fetchRepoData({ repo: 'Valay17/SIPHI--Speech-Improvement-for-People-with-Hearing-Impairment-using-Visual-Aid', customName: 'SIPHI – Speech Improvement for People with Hearing Impairment using Visual Aid' }, 'repo-section-5'); 
 fetchRepoData({ repo: 'Valay17/DISHA--Deep-Learning-based-Cyclone-Intensity-Estimation-with-NLP-based-Report-Generation', customName: 'DISHA - Deep Learning based Cyclone Intensity Estimation with NLP based Report Generation' }, 'repo-section-6');
 fetchRepoData({ repo: 'Valay17/DupliCron--Metadata-Based-Incremental-File-Synchronization-and-Backup', customName: 'DupliCron – Metadata Based Incremental File Synchronization and Backup' }, 'repo-section-7');
+fetchRepoData({ repo: 'Valay17/TransactViaMe--Event-Driven-Payment-Backend-Platform', customName: 'TransactViaMe – Event-Driven Payment Backend Platform' }, 'repo-section-8');
