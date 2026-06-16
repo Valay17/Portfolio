@@ -198,3 +198,4 @@ fetchRepoData({ repo: 'Valay17/TransactViaMe--Event-Driven-Payment-Backend-Platf
 fetchRepoData({ repo: 'Valay17/EFS-TDM--Encrypted-File-System-with-Transparent-Data-Masking', customName: 'EFS-TDM – Encrypted File System with Transparent Data Masking' }, 'repo-section-9');
 fetchRepoData({ repo: 'Valay17/Weather-Data-ETL-Pipeline-with-Airflow-and-PostgreSQL', customName: 'Weather Data ETL Pipeline with Airflow and PostgreSQL' }, 'repo-section-10');
 fetchRepoData({ repo: 'Valay17/Airline-Customer-Loyalty-and-Flight-Analytics', customName: 'Airline Customer Loyalty & Flight Analytics' }, 'repo-section-11');
+fetchRepoData({ repo: 'Valay17/x86-uP-TASM', customName: 'x86 Assembly & Low-level Programming' }, 'repo-section-12');
