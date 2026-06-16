@@ -195,3 +195,6 @@ fetchRepoData({ repo: 'Valay17/SIPHI--Speech-Improvement-for-People-with-Hearing
 fetchRepoData({ repo: 'Valay17/DISHA--Deep-Learning-based-Cyclone-Intensity-Estimation-with-NLP-based-Report-Generation', customName: 'DISHA - Deep Learning based Cyclone Intensity Estimation with NLP based Report Generation' }, 'repo-section-6');
 fetchRepoData({ repo: 'Valay17/DupliCron--Metadata-Based-Incremental-File-Synchronization-and-Backup', customName: 'DupliCron – Metadata Based Incremental File Synchronization and Backup' }, 'repo-section-7');
 fetchRepoData({ repo: 'Valay17/TransactViaMe--Event-Driven-Payment-Backend-Platform', customName: 'TransactViaMe – Event-Driven Payment Backend Platform' }, 'repo-section-8');
+fetchRepoData({ repo: 'Valay17/EFS-TDM--Encrypted-File-System-with-Transparent-Data-Masking', customName: 'EFS-TDM – Encrypted File System with Transparent Data Masking' }, 'repo-section-9');
+fetchRepoData({ repo: 'Valay17/Weather-Data-ETL-Pipeline-with-Airflow-and-PostgreSQL', customName: 'Weather Data ETL Pipeline with Airflow and PostgreSQL' }, 'repo-section-10');
+fetchRepoData({ repo: 'Valay17/Airline-Customer-Loyalty-and-Flight-Analytics', customName: 'Airline Customer Loyalty & Flight Analytics' }, 'repo-section-11');
