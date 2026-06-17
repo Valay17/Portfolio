@@ -70,7 +70,7 @@ const btn2 = document.getElementById("modeToggle2");
 const themeIcons = document.querySelectorAll(".icon");
 const currentTheme = localStorage.getItem("theme");
 
-if (currentTheme === "dark") {
+if (currentTheme === "light") {
   setLightMode();
 }
 

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog — Valay Saitwadekar</title>
+    <link rel="icon" href="{{ site.baseurl }}/assets/favicon.ico" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/blog/blog.css" />
+  </head>
+  <body>
+
+    <nav id="desktop-nav">
+      <a class="logo" href="{{ site.baseurl }}/">Valay Saitwadekar</a>
+      <div>
+        <ul class="nav-links">
+          <li><a href="{{ site.baseurl }}/">Portfolio</a></li>
+          <li><a href="{{ site.baseurl }}/blog/">Blog</a></li>
+          <li>
+            <img
+              id="modeToggle"
+              class="icon color-icon"
+              src="{{ site.baseurl }}/assets/theme_light.png"
+              src-light="{{ site.baseurl }}/assets/theme_dark.png"
+              src-dark="{{ site.baseurl }}/assets/theme_light.png"
+              alt="Toggle color theme"
+            />
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <nav id="hamburger-nav">
+      <a class="logo" href="{{ site.baseurl }}/">Valay Saitwadekar</a>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="{{ site.baseurl }}/" onclick="toggleMenu()">Portfolio</a></li>
+          <li><a href="{{ site.baseurl }}/blog/" onclick="toggleMenu()">Blog</a></li>
+          <li>
+            <img
+              id="modeToggle2"
+              class="icon color-icon"
+              src="{{ site.baseurl }}/assets/theme_light.png"
+              src-light="{{ site.baseurl }}/assets/theme_dark.png"
+              src-dark="{{ site.baseurl }}/assets/theme_light.png"
+              alt="Toggle color theme"
+            />
+          </li>
+        </div>
+      </div>
+    </nav>
+
+    <div class="blog-hero">
+      <h1 class="title">Blog</h1>
+      <p class="subtitle">C++ Internals, Low-Level Systems, and Performance Engineering.</p>
+      <p class="subtitle">Long-form companion to LinkedIn posts.</p>
+    </div>
+
+    <main class="post-list">
+
+      {% if site.posts.size > 0 %}
+        {% assign domains = site.posts | map: "domain" | uniq | sort %}
+        <div class="domain-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          {% for domain in domains %}
+            <button class="filter-btn" data-filter="{{ domain }}">{{ domain }}</button>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="post-list-header">
+        <span>Domain</span>
+        <span>Title</span>
+        <span class="col-date">Date</span>
+      </div>
+
+      {% if site.posts.size == 0 %}
+        <p class="post-list-empty">No posts yet.</p>
+      {% else %}
+        {% for post in site.posts %}
+          <div class="post-entry" data-domain="{{ post.domain }}">
+            <span class="domain-tag" data-filter="{{ post.domain }}">{{ post.domain }}</span>
+            <a class="post-entry-title" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+            <time class="post-entry-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+              {{ post.date | date: "%Y-%m-%d" }}
+            </time>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+    </main>
+
+    <button id="scrollToTopBtn" class="scroll-btn">
+      <img
+        src="{{ site.baseurl }}/assets/up_arrow_dark.png"
+        src-light="{{ site.baseurl }}/assets/up_arrow_light.png"
+        src-dark="{{ site.baseurl }}/assets/up_arrow_dark.png"
+        class="icon color-icon"
+        alt="Scroll to top"
+      />
+    </button>
+
+    <script src="{{ site.baseurl }}/blog/blog.js"></script>
+  </body>
+</html>

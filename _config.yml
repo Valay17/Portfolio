@@ -1,0 +1,37 @@
+title: "Valay Saitwadekar"
+description: "C++ Engineer — Low-level systems, performance engineering."
+baseurl: ""   # overridden automatically by GitHub Actions at build time
+url: "https://Valay17.github.io"
+
+# Post permalink structure: /blog/<domain>/<slug>/
+# Each post sets its own permalink in front matter.
+# Default fallback if permalink is omitted:
+defaults:
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: post
+
+# Exclude files that should not be output
+exclude:
+  - "*.sh"
+  - "README.md"
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+
+# Markdown processor
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: "highlight"
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+
+plugins: []

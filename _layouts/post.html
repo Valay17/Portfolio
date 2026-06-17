@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title }} — Valay Saitwadekar</title>
+    <link rel="icon" href="{{ site.baseurl }}/assets/favicon.ico" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/blog/blog.css" />
+  </head>
+  <body>
+
+    <nav id="desktop-nav">
+      <a class="logo" href="{{ site.baseurl }}/">Valay Saitwadekar</a>
+      <div>
+        <ul class="nav-links">
+          <li><a href="{{ site.baseurl }}/">Portfolio</a></li>
+          <li><a href="{{ site.baseurl }}/blog/">Blog</a></li>
+          <li>
+            <img
+              id="modeToggle"
+              class="icon color-icon"
+              src="{{ site.baseurl }}/assets/theme_light.png"
+              src-light="{{ site.baseurl }}/assets/theme_dark.png"
+              src-dark="{{ site.baseurl }}/assets/theme_light.png"
+              alt="Toggle color theme"
+            />
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <nav id="hamburger-nav">
+      <a class="logo" href="{{ site.baseurl }}/">Valay Saitwadekar</a>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="{{ site.baseurl }}/" onclick="toggleMenu()">Portfolio</a></li>
+          <li><a href="{{ site.baseurl }}/blog/" onclick="toggleMenu()">Blog</a></li>
+          <li>
+            <img
+              id="modeToggle2"
+              class="icon color-icon"
+              src="{{ site.baseurl }}/assets/theme_light.png"
+              src-light="{{ site.baseurl }}/assets/theme_dark.png"
+              src-dark="{{ site.baseurl }}/assets/theme_light.png"
+              alt="Toggle color theme"
+            />
+          </li>
+        </div>
+      </div>
+    </nav>
+
+    <article class="post-page">
+
+      <a class="post-back" href="{{ site.baseurl }}/blog/">&larr; All posts</a>
+
+      <header class="post-header">
+        {% if page.domain %}
+          <a class="domain-tag domain-tag-link" href="{{ site.baseurl }}/blog/?domain={{ page.domain }}">{{ page.domain }}</a>
+        {% endif %}
+        <h1 class="post-title">{{ page.title }}</h1>
+        <time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}">
+          {{ page.date | date: "%B %-d, %Y" }}
+        </time>
+      </header>
+
+      <div class="post-body-content post-section">
+        {{ content }}
+      </div>
+
+      {% if page.github or page.linkedin %}
+        <section class="post-section">
+          <p class="post-section-label">Links</p>
+          <ul class="post-links-list">
+            {% if page.github %}
+              <li><a href="{{ page.github }}" target="_blank" rel="noopener">GitHub &rarr; {{ page.github }}</a></li>
+            {% endif %}
+            {% if page.linkedin %}
+              <li><a href="{{ page.linkedin }}" target="_blank" rel="noopener">LinkedIn post &rarr;</a></li>
+            {% endif %}
+          </ul>
+        </section>
+      {% endif %}
+
+    </article>
+
+    <button id="scrollToTopBtn" class="scroll-btn">
+      <img
+        src="{{ site.baseurl }}/assets/up_arrow_dark.png"
+        src-light="{{ site.baseurl }}/assets/up_arrow_light.png"
+        src-dark="{{ site.baseurl }}/assets/up_arrow_dark.png"
+        class="icon color-icon"
+        alt="Scroll to top"
+      />
+    </button>
+
+    <script src="{{ site.baseurl }}/blog/blog.js"></script>
+  </body>
+</html>
