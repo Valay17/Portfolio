@@ -17,6 +17,7 @@ This is the repository for my personal portfolio website, where I showcase my sk
 - **Favicon Added:** A custom favicon that appears in the browser tab for easy site identification.
 - **Dynamic Column Layout:** The project list changes from a 3-column layout to a 1-column layout when viewed on mobile, improving accessibility and usability.
 - **Email Button:** A button that opens the user's default email client to easily send me an email.
+- **Blog:** A Jekyll-powered technical blog at `/blog/` covering C++ internals, low-level systems, and performance engineering. Posts are written in Markdown and deployed automatically via GitHub Actions. The listing page includes domain-based filtering.
 
 ## Technologies Used
 
@@ -26,6 +27,11 @@ This website is built using the following technologies:
   - HTML
   - CSS
   - JavaScript
+- **Blog:**
+  - Jekyll (static site generator)
+  - Markdown (post authoring)
+  - Rouge (syntax highlighting)
+  - GitHub Actions (automated build and deploy)
 - **Version Control:**
   - Git
   - GitHub (for hosting and version control)
