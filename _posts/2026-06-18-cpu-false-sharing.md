@@ -1,7 +1,12 @@
-# False Sharing: The Cache Line Bug That Looks Like Correct Code
-
-**Slug:** `/blog/cpu/false-sharing`
-
+---
+layout: post
+title: "False Sharing: The Cache Line Bug That Looks Like Correct Code"
+date: 2026-06-18
+domain: cpu
+permalink: /blog/cpu/false-sharing/
+github: "https://github.com/Valay17/Cpp-Journal/tree/main/cpu/false-sharing"
+linkedin: "https://linkedin.com/in/SaitwadekarValay"
+---
 
 ## Intro
 
@@ -129,9 +134,3 @@ Most languages have this problem, because it is not a language problem. It is a 
 **The 90% mental model**
 
 If two threads are writing to different variables and performance is worse than expected, check whether those variables share a cache line. If the combined size of both variables is under 64 bytes and they sit next to each other in memory, they probably do. Pad each one out to its own 64-byte line and the contention disappears, with no change to the actual logic.
-
-
-## Links
-
-- GitHub: `Github.com/Valay17/Cpp-Journal/tree/main/cpu/false-sharing`
-- LinkedIn: `Linkedin.com/in/SaitwadekarValay`
