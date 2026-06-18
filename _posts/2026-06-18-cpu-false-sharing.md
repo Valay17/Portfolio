@@ -5,7 +5,7 @@ date: 2026-06-18
 domain: cpu
 permalink: /blog/cpu/false-sharing/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/cpu/false-sharing"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7473315676456177664-W9AC/"
 ---
 
 ## Intro
