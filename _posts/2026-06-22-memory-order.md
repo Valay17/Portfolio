@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Acquire/Release, Sequentially_Consistent Memory Ordering: The One Way Wall Between Two Threads"
-date: 2026-06-19
+title: "Acquire/Release Memory Ordering: The One Way Wall Between Two Threads"
+date: 2026-06-22
 domain: concurrency
 permalink: /blog/concurrency/memory-order/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/concurrency/memory-order"
@@ -39,6 +39,8 @@ The wall is per-variable, not per-program. That distinction matters more than it
 `memory_order_seq_cst` provides the same acquire and release guarantees, but adds one more constraint: every thread in the program agrees on a single global order for every seq_cst operation, including atomics that thread never touches directly. That global agreement, not the ordering itself, is the actual cost. Two threads using acquire/release on one atomic only need to agree with each other. A program using seq_cst needs every thread to agree on one timeline for all of it.
 
 On x86, this is less expensive than it sounds, because x86 already provides fairly strong ordering at the hardware level by default. seq_cst is the default for atomics in C++ precisely because it is the safest choice to reach for first. The cost shows up more clearly when a full fence is actually required, which can slow down multicore execution measurably. acquire and release are half barriers: one side only. seq_cst is a full barrier: both sides, globally.
+
+There is also a middle level between plain acquire/release and seq_cst, worth naming even though this post does not lean on it directly: `acq_rel`. It applies to read-modify-write operations, things like `fetch_add` or `compare_exchange`, which read the current value and write a new one in a single atomic step. Since the operation does both at once, it can act as acquire on the read half and release on the write half simultaneously. The reach is still the same as plain acquire/release though, scoped to threads synchronizing through that same atomic. A thread elsewhere in the program that never touches that variable gets nothing from an acq_rel pair either.
 
 ## relaxed Has No Wall
 
