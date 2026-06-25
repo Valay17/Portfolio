@@ -5,7 +5,7 @@ date: 2026-06-23
 domain: concurrency
 permalink: /blog/concurrency/memory-fences/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/concurrency/memory-fences"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7475427381902635008-qkbL/"
 ---
 
 A memory fence is not a hardware switch. It is an instruction to the compiler about what it is allowed to reorder. On x86, the hardware is already strongly ordered for most operations, so a fence's job is mostly done at compile time, by stopping the compiler from moving things around. seq_cst is the exception. It needs an actual CPU instruction to enforce a global order across cores, because that guarantee is stronger than anything the hardware gives you by default.
