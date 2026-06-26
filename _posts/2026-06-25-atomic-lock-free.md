@@ -5,7 +5,7 @@ date: 2026-06-25
 domain: concurrency
 permalink: /blog/concurrency/atomic-lock-free/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/concurrency/atomic-lock-free"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7475826992089571329-p9Xe"
 ---
 
 `std::atomic<T>` only guarantees atomicity. Whether the implementation is lock-free underneath is left up to the platform and the size of the type. The standard does not promise it, and assuming it without checking is a real way to end up with a hidden mutex sitting inside something that looks like a simple atomic variable.
