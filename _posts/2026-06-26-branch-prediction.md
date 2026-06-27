@@ -5,7 +5,7 @@ date: 2026-06-26
 domain: cpu
 permalink: /blog/cpu/branch-prediction/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/cpu/branch-prediction"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7476220926271832064-ZNnr/"
 ---
 
 When a CPU mispredicts a branch, it does not just pause and wait. It already ran the wrong instructions, and now has to throw all of that work away. The branch itself is nearly free. The cleanup afterward is not.

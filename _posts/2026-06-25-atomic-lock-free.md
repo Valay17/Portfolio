@@ -78,7 +78,7 @@ void store_32() { a32.store({}, std::memory_order_relaxed); }
   37:   xor    ecx,ecx
   39:   xor    esi,esi
   3b:   xor    edx,edx
-  3d:   jmp    42 <_Z8store_16v+0x12>            <-- jumps into a helper, not a plain inline mov like store_4/8
+  3d:   jmp    69 <_Z8store_16v+0x12>            <-- jumps into a helper, not a plain inline mov like store_4/8
 
 0000000000000050 <_Z8store_32v>:
   50:   push   rbp
@@ -161,7 +161,7 @@ This is the actual lesson, more useful than either answer in isolation: the weak
 ```cpp
 int plain_value = 0;
 std::atomic_ref<int> ref(plain_value);
-ref.store(42, std::memory_order_release);
+ref.store(69, std::memory_order_release);
 // any other atomic_ref constructed over the same plain_value
 // behaves as the same atomic variable, not a separate one
 ```
@@ -221,6 +221,15 @@ This connects back to `wait` directly: `wait(old_value, order)` is affected by e
 The general fix for ABA in lock-free structures is to stop comparing only the value and start comparing a value paired with a version counter or generation tag that only ever increases, so that a value reverting to its old bit pattern does not also revert the tag attached to it. That fix is a structural decision in how the data itself is laid out, not something the wait/notify interface provides on its own.
 
 Another solution is to augment the value with a version counter and update both atomically using a `Double Width CAS`, so that a sequence like `A → B → A` becomes `(A,1) → (B,2) → (A,3)`, allowing threads to detect that the value changed even though it returned to the same bit pattern. Architectures that provide load-linked/store-conditional (LL/SC) primitives offer a similar benefit, since the store-conditional fails if any intervening write occurred between the load-linked and store-conditional, regardless of whether the final value matches the original. In both cases, the key idea is that correctness depends on detecting intervening modifications rather than simply comparing the current value, since wait itself performs only a bitwise comparison and provides no built-in protection against ABA.
+
+### Why 16 Bytes Specifically Needs `-mcx16`
+The 16 bytes case in the disassembly above deserves a more precise answer than "it depends." `cmpxchg16b`, the instruction that can atomically compare-and-swap 16 bytes in one step, has existed on x86_64 for about two decades. The hardware is not the limiting factor here.
+
+GCC will not emit `cmpxchg16b` by default, regardless of whether the target CPU supports it, unless `-mcx16` is passed explicitly at compile time. Without that flag, a 16-byte atomic falls back to libatomic even on hardware that could have handled it with a single instruction. This makes the toolchain, not the silicon, the actual constraint for most default builds.
+
+Passing `-mcx16` is not the end of the story either. Even with the instruction available, GCC still will not report is_always_lock_free as true for a 16-byte atomic. This is a deliberate stance, not an oversight: a sequentially consistent 128-bit load has no single hardware primitive on x86-64 to back it directly. The only way to fake one is a CAS that writes the same value back to memory it just read, which fails outright on const or otherwise read-only memory. GCC routes 16-byte atomics through libatomic, which does use `cmpxchg16b` internally at runtime, but will not commit to calling the type lock-free at the ABI level because of that load problem. Clang takes the opposite position: it accepts the risk and inlines cmpxchg16b directly, reporting the type as lock-free where GCC will not.
+
+The practical failure mode this produces is a tagged pointer, a pointer packed together with an ABA counter into a 16-byte structure, exactly the shape 16 bytes represents in the demo above. It is a common pattern in lock-free structures, and it is also the classic case where someone assumes lock-free behavior by default and does not get it, because the `-mxc16` flag is missing.
 
 ## Quick Reference
 
