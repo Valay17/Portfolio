@@ -5,7 +5,7 @@ date: 2026-07-01
 domain: compiler
 permalink: /blog/compiler/undefined-behavior/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/compiler/undefined-behavior"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7478030093853061120-YsmE"
 ---
 
 A line of code that checks for integer overflow can disappear completely, not because of some aggressive optimization flag, but because the compiler decided the check could never be true.
