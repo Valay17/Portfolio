@@ -106,7 +106,6 @@ Kernel bypass is worth the complexity when the application needs a predictable, 
 
 It is overkill when the application's latency budget is in the tens of milliseconds, when packet arrival rate is low or bursty, or when the engineering cost of managing registered memory pools and dedicated polling cores exceeds the value of the latency reduction. Most web services, database servers, and message brokers fall into this category. Their latency is dominated by application logic, disk I/O, or network round trips, none of which kernel bypass touches.
 
-The middle cases are served by AF_XDP, hardware interrupt coalescing with NAPI tuning, or kernel bypass frameworks with fallback modes. Getting to 10 to 20 microseconds of receive latency is achievable without full DPDK-style bypass on modern hardware with careful kernel tuning. Getting below 5 microseconds repeatably requires the bypass.
 
 ## Quick Reference
 
