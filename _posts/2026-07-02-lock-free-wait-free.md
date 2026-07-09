@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Lock-Free vs Wait-Free: The Actual Difference"
-date: 2026-07-01
+date: 2026-07-02
 domain: concurrency
 permalink: /blog/concurrency/lock-free-wait-free/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/concurrency/lock-free-wait-free"
