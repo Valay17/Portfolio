@@ -4,7 +4,7 @@ title: "Kernel Bypass Networking: Wire to Application without the OS in Between"
 date: 2026-07-09
 domain: low-latency
 permalink: /blog/low-latency/kernel-bypass/
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7480781843257008128-Y7JB"
 ---
 
 A network packet hitting a server takes a trip through several distinct layers before application code ever sees it. Each layer was designed to be correct and general, not fast. Kernel bypass is the decision to remove those layers entirely for the applications that cannot afford them.
