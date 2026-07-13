@@ -154,6 +154,23 @@
 
           <div class="details-container color-container">
             <div class="article-container">
+              <div id="repo-section-13"></div>
+            </div>
+              <h5>May 2026 - July 2026</h5>
+              <div class="section__text__p3">
+                <ul>
+                <li>Built a market-data engine that ingests the full IEX DEEP feed of 117.8M FIX messages at wire rate, filters to the subscribed instrument, tracks a live L2 order book, generates signals, and broadcasts book updates over SBE-UDP multicast off the hot thread. Sustained 1.21M messages/second with zero NIC-to-engine drops through traffic bursts via non-blocking busy-polled socket reads, and benchmarked a peak of 4.4M messages/second at 226 ns/message with a 6.8 us median order round-trip.
+                </li><div class="spacer"></div><li>Tuned the kernel and CPU to cut worst-case I/O-to-hot tail latency from 630 us to 17 us while holding p50 and p99 flat at 120 ns and 220 ns, targeting the tail rather than the median. Validated the full pipeline through a 3x load burst, sequence-gap injection, and repeated disconnect-reconnect cycles recovering in under 0.30 s, sustaining zero ring drops in every phase while p99 rose only to 250 ns at peak.
+                </li><div class="spacer"></div><li>Cut FIX parse latency to 191 ns/message over 1M+ messages with custom fixed-point numeric parsers, a decimal parser at 4.65 ns running 14x faster than strtod and an integer parser at 7.56 ns running 2x faster than atoi, floating-point-free on the hot path. Layered a complete FIX session engine over it for logon, heartbeat, sequence tracking, and gap recovery, requesting a resend from the server to pull missed messages.
+                </li><div class="spacer"></div><li>Bridged four pinned threads over custom wait-free SPSC ring buffers at a 140 ns round-trip with a zero-copy produce/consume path for 4 KB frames, running an allocation-free, lock-free, cache-aligned, false-sharing-free hot path. Replaced std::map with a cache-conscious flat sorted array to drop order-book update p999 from 50 ns to 20 ns, and discarded an AVX2 SoA book after it measured 64.4 ns against the scalar 41.7 ns.
+              </li></ul>
+              </div>
+          </div>
+
+          <div class="gap"></div>
+          
+          <div class="details-container color-container">
+            <div class="article-container">
               <div id="repo-section-7"></div>
             </div>
               <h5>June 2025 - July 2025</h5>
@@ -488,6 +505,7 @@
         <div class="item">Memory Barriers</div>
         <div class="item">SPSC Queue</div>
         <div class="item">MPMC Queue</div>
+        <div class="item">Ring Buffers</div>
         <div class="item">Hazard Pointers</div>
         <div class="item">Read-Copy-Update (RCU)</div>
         <div class="item">Synchronization Primitives</div>
@@ -496,6 +514,7 @@
         <div class="item">Concurrent Data Structures</div>
         <div class="item">Multithreading</div>
         <div class="item">Thread Local Storage</div>
+        <div class="item">Thread Pinning/Affinity</div>
         <div class="item">Double Buffering</div>
         <div class="item">Condition Variables</div>
         <div class="item">Mutexes</div>
@@ -552,6 +571,11 @@
         <div class="item">Stack Allocator</div>
         <div class="item">Pool Allocator</div>
         <div class="item">Bump Allocator</div>
+        <div class="item">Fixed-Point Arithmetic</div>
+        <div class="item">Allocation-Free Hot Path</div>
+        <div class="item">LTO</div>
+        <div class="item">GCC/Clang Function Attributes</div>
+        <div class="item">AVX2/SIMD Intrinsics</div>
       </div>
 
       <!-- HARDWARE TUNING -->
@@ -564,6 +588,10 @@
         <div class="item">Memory Locking</div>
         <div class="item">C/P-State Management</div>
         <div class="item">Page Sizing and Huge Pages</div>
+        <div class="item">Core Isolation</div>
+        <div class="item">NUMA Tuning</div>
+        <div class="item">Memory-Mapped I/O</div>
+        <div class="item">Busy-Polling</div>
       </div>
 
       <!-- PROFILING & DEBUGGING -->
@@ -583,6 +611,9 @@
         <div class="item">Locust</div>
         <div class="item">k6</div>
         <div class="item">Postman</div>
+        <div class="item">HdrHistogram</div>
+        <div class="item">ASan/UBSan/TSan</div>
+        <div class="item">RDTSCP Cycle Timing</div>
       </div>
 
       <!-- BUILD & TOOLING -->
@@ -601,6 +632,8 @@
         <div class="item">npm</div>
         <div class="item">yarn</div>
         <div class="item">pip</div>
+        <div class="item">Test Driven Development</div>
+        <div class="item">Unit & Integration Testing</div>
       </div>
 
       <!-- FRAMEWORKS & LIBRARIES -->
