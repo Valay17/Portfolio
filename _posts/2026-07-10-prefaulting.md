@@ -5,7 +5,7 @@ date: 2026-07-09
 domain: memory
 permalink: /blog/memory/prefaulting/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/memory/prefaulting"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7481112264813477888-Ojkq"
 ---
 
 Calling `new` does not give you memory. It gives you a promise of memory. The OS reserves a range of virtual addresses, but no physical page backs any of it yet. The first time your code touches that memory, the hardware raises a page fault, the kernel steps in to do the actual mapping, and only then does your instruction continue. This cost is real, measurable, and invisible in the source.
