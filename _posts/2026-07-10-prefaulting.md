@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Lazy Allocation and the Cost of the First Touch"
-date: 2026-07-09
+date: 2026-07-10
 domain: memory
 permalink: /blog/memory/prefaulting/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/memory/prefaulting"
