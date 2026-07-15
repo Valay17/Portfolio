@@ -5,7 +5,7 @@ date: 2026-07-14
 domain: memory
 permalink: /blog/memory/hugepages/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/memory/hugepages"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7482561581856223232-8ZWI/"
 ---
 
 Your CPU does not work with the memory addresses your code uses. It works with a translated version, and every translation costs time unless it is already cached. That cache is called the TLB (Translation Lookaside Buffer), and it is small. Hugepages exist to make the TLB's limited capacity cover more of your working set.
