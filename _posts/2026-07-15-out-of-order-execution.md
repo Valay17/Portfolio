@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Out-of-Order Execution: How the CPU and Compiler Reorder Your Code"
-date: 2026-07-11
+date: 2026-07-15
 domain: cpu
 permalink: /blog/cpu/out-of-order-execution/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/cpu/out-of-order-execution"
