@@ -23,6 +23,67 @@ Before a process starts, the program exists as an ELF (Executable and Linkable F
 
 `.symtab` holds the symbol table used by the linker and debugger. `.rel[a].*` holds relocation information used when loading shared libraries. `.debug_*` sections hold DWARF debug information when compiled with `-g`. `.eh_frame` holds exception handling tables: for every function, the compiler emits a description of which destructors need to be called at each point if an exception unwinds through it. This is what makes C++ exceptions "zero-cost" when not thrown: the try/catch adds no instructions to the normal execution path, just this table sitting in the binary unused until an exception actually occurs.
 
+The diagram below shows a virtual address space, not physical RAM. Every process gets its own private virtual address space: the program sees a clean range of addresses from low to high and has no awareness of other processes sharing the same physical machine. The addresses your program uses, every pointer, every stack variable, every global, are virtual addresses. The OS and the CPU's MMU (memory management unit) translate them to physical addresses behind the scenes on every access. When the OS maps a section into this space, it is setting up that translation in the page table, not necessarily copying anything into physical RAM yet. Physical pages are only assigned on first touch, the same lazy allocation covered in the prefaulting post. This is why .bss takes up no space in the binary file: the OS just needs to know the size, zero-initializes the physical pages when they are first faulted in, and maps them into the right range of the virtual address space.
+
+<div style="background:#0D1117;border-radius:8px;padding:24px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:28px 0;">
+<div style="max-width:720px;margin:0 auto;">
+<p style="font-family:monospace;font-size:11px;color:#58A6FF;letter-spacing:.1em;text-transform:uppercase;margin:0 0 4px;">Virtual Address Space</p>
+<p style="font-size:15px;font-weight:700;color:#E6EDF3;margin:0 0 4px;">ELF Sections — High Address to Low Address</p>
+<p style="font-size:12px;color:#8B949E;margin:0 0 18px;">Stack at top, code at bottom. Stack and heap grow toward each other at runtime.</p>
+
+<div style="border-left:4px solid #E8845A;background:#E8845A18;padding:10px 14px;margin-bottom:2px;display:grid;grid-template-columns:120px 1fr 40px;gap:0 14px;align-items:center;">
+<div><span style="font-family:monospace;font-size:13px;font-weight:700;color:#E8845A;">Stack</span><br><span style="font-size:10px;color:#8B949E;">grows downward ↓</span></div>
+<div><span style="font-size:13px;color:#C9D1D9;">Local variables, return addresses, function frames</span><br><span style="font-size:11px;color:#8B949E;font-style:italic;">per thread</span></div>
+<span style="font-family:monospace;font-size:12px;font-weight:700;color:#3FB950;text-align:right;">rw-</span>
+</div>
+
+<div style="border-left:3px solid #21262D;border-right:3px solid #21262D;background:#0D1117;text-align:center;color:#444C56;font-family:monospace;font-size:12px;padding:10px 0;">↕  free space</div>
+
+<div style="border-left:4px solid #C0454A;background:#C0454A18;padding:10px 14px;margin-bottom:2px;display:grid;grid-template-columns:120px 1fr 40px;gap:0 14px;align-items:center;">
+<div><span style="font-family:monospace;font-size:13px;font-weight:700;color:#C0454A;">Heap</span><br><span style="font-size:10px;color:#8B949E;">grows upward ↑</span></div>
+<div><span style="font-size:13px;color:#C9D1D9;">new / malloc allocations</span><br><span style="font-size:11px;color:#8B949E;font-style:italic;">shared across threads</span></div>
+<span style="font-family:monospace;font-size:12px;font-weight:700;color:#3FB950;text-align:right;">rw-</span>
+</div>
+
+<div style="border-left:4px solid #8B5CF6;background:#8B5CF618;padding:10px 14px;margin-bottom:2px;display:grid;grid-template-columns:120px 1fr 40px;gap:0 14px;align-items:center;">
+<div><span style="font-family:monospace;font-size:13px;font-weight:700;color:#8B5CF6;">.eh_frame</span></div>
+<div><span style="font-size:13px;color:#C9D1D9;">Exception handling tables — which destructors to call during stack unwind</span><br><span style="font-size:11px;color:#8B949E;font-style:italic;">zero cost when no exception thrown</span></div>
+<span style="font-family:monospace;font-size:12px;font-weight:700;color:#F0883E;text-align:right;">r--</span>
+</div>
+
+<div style="border-left:4px solid #3B82C4;background:#3B82C418;padding:10px 14px;margin-bottom:2px;display:grid;grid-template-columns:120px 1fr 40px;gap:0 14px;align-items:center;">
+<div><span style="font-family:monospace;font-size:13px;font-weight:700;color:#3B82C4;">.bss</span></div>
+<div><span style="font-size:13px;color:#C9D1D9;">Uninitialized / zero-initialized globals and statics — not stored in the binary, OS zeroes at load</span><br><span style="font-size:11px;color:#8B949E;font-style:italic;">no space in binary file</span></div>
+<span style="font-family:monospace;font-size:12px;font-weight:700;color:#3FB950;text-align:right;">rw-</span>
+</div>
+
+<div style="border-left:4px solid #2F7A4E;background:#2F7A4E18;padding:10px 14px;margin-bottom:2px;display:grid;grid-template-columns:120px 1fr 40px;gap:0 14px;align-items:center;">
+<div><span style="font-family:monospace;font-size:13px;font-weight:700;color:#2F7A4E;">.data</span></div>
+<div><span style="font-size:13px;color:#C9D1D9;">Initialized globals and statics with non-zero values</span><br><span style="font-size:11px;color:#8B949E;font-style:italic;">e.g. int x = 42;</span></div>
+<span style="font-family:monospace;font-size:12px;font-weight:700;color:#3FB950;text-align:right;">rw-</span>
+</div>
+
+<div style="border-left:4px solid #B07D28;background:#B07D2818;padding:10px 14px;margin-bottom:2px;display:grid;grid-template-columns:120px 1fr 40px;gap:0 14px;align-items:center;">
+<div><span style="font-family:monospace;font-size:13px;font-weight:700;color:#B07D28;">.rodata</span></div>
+<div><span style="font-size:13px;color:#C9D1D9;">String literals and const globals — writing causes SIGSEGV</span><br><span style="font-size:11px;color:#8B949E;font-style:italic;">e.g. const char* s = "hello";</span></div>
+<span style="font-family:monospace;font-size:12px;font-weight:700;color:#F0883E;text-align:right;">r--</span>
+</div>
+
+<div style="border-left:4px solid #1D6FA4;background:#1D6FA418;padding:10px 14px;display:grid;grid-template-columns:120px 1fr 40px;gap:0 14px;align-items:center;">
+<div><span style="font-family:monospace;font-size:13px;font-weight:700;color:#1D6FA4;">.text</span></div>
+<div><span style="font-size:13px;color:#C9D1D9;">Executable machine code — every function in the program lives here</span><br><span style="font-size:11px;color:#8B949E;font-style:italic;">never writable</span></div>
+<span style="font-family:monospace;font-size:12px;font-weight:700;color:#58A6FF;text-align:right;">r-x</span>
+</div>
+
+<div style="display:flex;gap:20px;margin-top:14px;">
+<span style="font-family:monospace;font-size:12px;color:#F0883E;font-weight:700;">r--</span><span style="font-size:12px;color:#8B949E;">read-only</span>
+<span style="font-family:monospace;font-size:12px;color:#3FB950;font-weight:700;">rw-</span><span style="font-size:12px;color:#8B949E;">read-write</span>
+<span style="font-family:monospace;font-size:12px;color:#58A6FF;font-weight:700;">r-x</span><span style="font-size:12px;color:#8B949E;">read-execute</span>
+</div>
+
+</div>
+</div>
+
 ## From Binary to Process: What the OS Does
 
 When you run a program, the kernel does not simply start executing the first byte. The sequence is:
@@ -89,6 +150,43 @@ When `main()` returns, control goes back to `__libc_start_main`, which calls `ex
 4. Returns control to the OS, which reclaims the process's memory and file descriptors
 
 This is why `std::cout` output appears even if you never explicitly call `std::cout.flush()`: the flush happens as part of the shutdown sequence. It also means a `std::vector` or any other RAII object at global scope will have its destructor called cleanly, including freeing its heap allocation, before the process ends.
+
+
+<div style="background:#0D1117;border-radius:8px;padding:24px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:28px 0;">
+<div style="max-width:700px;margin:0 auto;">
+<p style="font-family:monospace;font-size:11px;color:#58A6FF;letter-spacing:.1em;text-transform:uppercase;margin:0 0 4px;">Program Lifecycle</p>
+<p style="font-size:15px;font-weight:700;color:#E6EDF3;margin:0 0 4px;">Everything That Runs Before and After main()</p>
+<p style="font-size:12px;color:#8B949E;margin:0 0 18px;">Shutdown mirrors startup in reverse. Destructor order is the mirror of constructor order.</p>
+
+<div style="border-left:3px solid #1D6FA4;background:#1D6FA422;padding:6px 12px;font-size:11px;font-weight:700;color:#1D6FA4;letter-spacing:.08em;text-transform:uppercase;">OS</div>
+<div style="border-left:3px solid #1D6FA444;border-bottom:1px solid #161B22;background:#0D1117;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;color:#C9D1D9;">Read ELF header</span><span style="font-size:12px;color:#8B949E;">validate binary, find program headers</span></div>
+<div style="border-left:3px solid #1D6FA444;border-bottom:1px solid #161B22;background:#0D1117;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;color:#C9D1D9;">Map sections into memory</span><span style="font-size:12px;color:#8B949E;">.text r-x · .rodata r-- · .data rw- · .bss rw- (OS zeroes this)</span></div>
+<div style="border-left:3px solid #1D6FA444;border-bottom:1px solid #161B22;background:#0D1117;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;color:#C9D1D9;">Load dynamic linker ld.so</span><span style="font-size:12px;color:#8B949E;">resolve shared libraries, fix up the Global Offset Table</span></div>
+
+<div style="text-align:center;color:#444C56;font-size:16px;padding:4px 0;">↓</div>
+
+<div style="border-left:3px solid #8B5CF6;background:#8B5CF622;padding:6px 12px;font-size:11px;font-weight:700;color:#8B5CF6;letter-spacing:.08em;text-transform:uppercase;">C Runtime</div>
+<div style="border-left:3px solid #8B5CF644;border-bottom:1px solid #161B22;background:#0D1117;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;color:#C9D1D9;">_start</span><span style="font-size:12px;color:#8B949E;">actual entry point — not main(). This is where the CPU jumps first.</span></div>
+<div style="border-left:3px solid #8B5CF644;border-bottom:1px solid #161B22;background:#0D1117;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;color:#C9D1D9;">C runtime init</span><span style="font-size:12px;color:#8B949E;">argc / argv / envp · thread-local storage · I/O buffers for cin / cout / cerr</span></div>
+<div style="border-left:3px solid #8B5CF644;border-bottom:1px solid #161B22;background:#0D1117;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;color:#C9D1D9;">Global &amp; static constructors</span><span style="font-size:12px;color:#8B949E;">top-to-bottom within each file · order across files is undefined ← SIOF lives here</span></div>
+
+<div style="text-align:center;color:#444C56;font-size:16px;padding:4px 0;">↓</div>
+
+<div style="border-left:3px solid #3FB950;background:#3FB95022;padding:6px 12px;font-size:11px;font-weight:700;color:#3FB950;letter-spacing:.08em;text-transform:uppercase;">Your Code</div>
+<div style="border-left:3px solid #3FB95044;border-bottom:1px solid #161B22;background:#3FB95011;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;font-weight:700;color:#3FB950;font-family:monospace;">main()</span><span style="font-size:12px;color:#8B949E;">finally called — everything above has already run</span></div>
+
+<div style="text-align:center;color:#444C56;font-size:16px;padding:4px 0;">↓</div>
+
+<div style="border-left:3px solid #E8845A;background:#E8845A22;padding:6px 12px;font-size:11px;font-weight:700;color:#E8845A;letter-spacing:.08em;text-transform:uppercase;">Shutdown — mirrors startup in reverse</div>
+<div style="border-left:3px solid #E8845A44;border-bottom:1px solid #161B22;background:#0D1117;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;color:#C9D1D9;">main() returns → exit()</span><span style="font-size:12px;color:#8B949E;"></span></div>
+<div style="border-left:3px solid #E8845A44;border-bottom:1px solid #161B22;background:#0D1117;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;color:#C9D1D9;">atexit() handlers</span><span style="font-size:12px;color:#8B949E;">in reverse registration order</span></div>
+<div style="border-left:3px solid #E8845A44;border-bottom:1px solid #161B22;background:#0D1117;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;color:#C9D1D9;">Global &amp; static destructors</span><span style="font-size:12px;color:#8B949E;">reverse construction order</span></div>
+<div style="border-left:3px solid #E8845A44;border-bottom:1px solid #161B22;background:#0D1117;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;color:#C9D1D9;">Flush all I/O buffers</span><span style="font-size:12px;color:#8B949E;">cout output appears here even without an explicit flush()</span></div>
+<div style="border-left:3px solid #E8845A44;background:#0D1117;padding:9px 12px 9px 22px;display:grid;grid-template-columns:210px 1fr;gap:0 16px;"><span style="font-size:13px;color:#C9D1D9;">Process exits</span><span style="font-size:12px;color:#8B949E;">OS reclaims memory and file descriptors</span></div>
+
+</div>
+</div>
+
 
 ## std::exit, abort, and terminate
 
