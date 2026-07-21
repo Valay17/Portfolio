@@ -5,7 +5,7 @@ date: 2026-07-15
 domain: cpu
 permalink: /blog/cpu/out-of-order-execution/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/cpu/out-of-order-execution"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7483419388751278080-ZcY4/"
 ---
 
 Your CPU does not run your code in the order you wrote it. It never promised to. The guarantee is that the result looks like it did, not that the execution happened that way.
