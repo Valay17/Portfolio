@@ -4,7 +4,7 @@ title: "Before and After main(): How C++ Programs Actually Start and End"
 date: 2026-07-21
 domain: language
 permalink: /blog/language/before-main/
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7485165502936342529-D4BA"
 ---
 
 `main()` is not the first thing that runs in your program. Not close. By the time `main()` gets called, the kernel has loaded your binary, the C runtime has initialized, and every global and static object in your program has already been constructed. When `main()` returns, all of it runs again in reverse. This post covers what actually happens at both ends.
