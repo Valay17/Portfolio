@@ -4,7 +4,7 @@ title: "Maximal Munch and Most Vexing Parse: Two Rules the Compiler Always Follo
 date: 2026-07-23
 domain: compiler
 permalink: /blog/compiler/maximal-munch-most-vexing-parse/
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7485967299322068992-MYbl"
 ---
 
 The compiler does not guess what you meant. It applies fixed grammar rules, mechanically, every time, whether the result matches your intent or not. Two of those rules produce results that consistently surprise people: maximal munch in the lexer and the most vexing parse in the parser. Both are correct behavior. Understanding why requires a quick look at where they sit in the compilation pipeline.
