@@ -4,12 +4,12 @@ title: "Memory Fences: What the Compiler and Hardware Each Actually Do"
 date: 2026-07-28
 domain: concurrency
 permalink: /blog/concurrency/memory-fences/
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7487719750890831872-gc53"
 ---
 
 Most of what a memory fence does has nothing to do with the CPU. It is the compiler you are fencing. Understanding the split between the two, when a fence generates an actual instruction and when it only constrains code generation, requires looking at what a fence actually is in the C++ memory model and what x86 hardware already provides for free.
 
-## What a Fence Actually Is
+## What a Fence Actually is
 
 In the C++ memory model, `atomic_thread_fence` and `atomic_signal_fence` are not operations on atomic variables. They are standalone synchronization constraints that affect the ordering of memory operations relative to the fence. A fence with release semantics prevents any prior write from being reordered past the fence. A fence with acquire semantics prevents any subsequent read from being reordered before the fence. Neither constraint says anything about CPU instructions until you ask what is needed to enforce it on a specific architecture.
 
