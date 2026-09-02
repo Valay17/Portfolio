@@ -5,7 +5,7 @@ date: 2026-08-21
 domain: compiler
 permalink: /blog/compiler/frame-pointer/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/compiler/frame-pointer"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/activity-7496597004739981312-371K/"
 ---
 
 Every function call needs somewhere to put its local variables, its arguments, and the address to jump back to once it is done. That block of memory is a stack frame, and whether the compiler makes it easy to find depends on more than the optimization level. It depends on which compiler build is actually running, and the traditional assumption about what that means is now wrong on many systems.
