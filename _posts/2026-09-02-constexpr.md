@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "constexpr: Allowed to Run at Compile Time, Not Required To"
-date: 2026-09-01
+date: 2026-09-02
 domain: compiler
 permalink: /blog/compiler/constexpr/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/compiler/constexpr"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/activity-7500946017383559168-5tcT/"
 ---
 
 `constexpr` does not guarantee your code runs at compile time. It guarantees it is allowed to. That distinction matters more than it sounds, and the generated code makes it visible directly.
