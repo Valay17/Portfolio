@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page.title }} — Valay Saitwadekar</title>
     <link rel="icon" href="{{ site.baseurl }}/assets/favicon.ico" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/blog/blog.css" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/blog/blog.css?v={{ site.time | date: '%s' }}" />
   </head>
   <body>
 
@@ -103,6 +103,6 @@
       />
     </button>
 
-    <script src="{{ site.baseurl }}/blog/blog.js"></script>
+    <script src="{{ site.baseurl }}/blog/blog.js?v={{ site.time | date: '%s' }}"></script>
   </body>
 </html>
