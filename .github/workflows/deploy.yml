@@ -44,6 +44,17 @@ jobs:
           path: ~/.npm/_npx
           key: pagefind-1.3.0-${{ runner.os }}
 
+      # Jekyll silently lets two posts with the same `permalink:` overwrite each
+      # other in _site. Fail the build instead so the collision is obvious.
+      - name: Check for duplicate permalinks
+        run: |
+          dupes=$(grep -rhE '^permalink:' _posts/ | sed 's/^permalink:[[:space:]]*//' | sort | uniq -d)
+          if [ -n "$dupes" ]; then
+            echo "::error::Duplicate permalink(s) in _posts/:"
+            printf '%s\n' "$dupes"
+            exit 1
+          fi
+
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:

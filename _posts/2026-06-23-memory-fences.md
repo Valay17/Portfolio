@@ -3,7 +3,7 @@ layout: post
 title: "Memory Fences: A Wall With No Atomic Attached"
 date: 2026-06-23
 domain: concurrency
-permalink: /blog/concurrency/memory-fences/
+permalink: /blog/concurrency/standalone-fences/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/concurrency/memory-fences"
 linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7475427381902635008-qkbL/"
 ---
