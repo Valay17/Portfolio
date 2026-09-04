@@ -50,8 +50,11 @@ jobs:
         run: |
           dupes=$(grep -rhE '^permalink:' _posts/ | sed 's/^permalink:[[:space:]]*//' | sort | uniq -d)
           if [ -n "$dupes" ]; then
-            echo "::error::Duplicate permalink(s) in _posts/:"
-            printf '%s\n' "$dupes"
+            echo "::error::Duplicate permalink(s) in _posts/ — give one of the colliding posts a distinct slug:"
+            while IFS= read -r p; do
+              echo "  $p"
+              grep -rlE "^permalink:[[:space:]]*$p[[:space:]]*$" _posts/ | sed 's/^/    /'
+            done <<< "$dupes"
             exit 1
           fi
 
