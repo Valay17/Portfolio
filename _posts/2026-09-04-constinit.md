@@ -57,7 +57,7 @@ This distinction matters because constant initialization is guaranteed to happen
 
 ## The Initialization Order Problem it Solves
 
-The before-main post covered the Static Initialization Order Fiasco (SIOF): a global variable in one file depending on a global variable in another file already being constructed, with no guarantee that ordering holds across translation units. The fix shown there was the function-local static pattern. `constinit` is a different fix for a specific subset of the problem.
+The <a href="{{ site.baseurl }}/blog/language/before-main/#global-constructors-and-the-static-initialization-order-fiasco" target="_blank" rel="noopener noreferrer">before-main post</a> covered the Static Initialization Order Fiasco (SIOF): a global variable in one file depending on a global variable in another file already being constructed, with no guarantee that ordering holds across translation units. The fix shown there was the function-local static pattern. `constinit` is a different fix for a specific subset of the problem.
 
 If a global variable's starting value depends only on compile-time constants rather than on any other global's constructor having already run, there is no ordering dependency to worry about. `constinit` expresses that intent and enforces it. The compiler verifies that no dynamic initialization is needed and rejects anything that would introduce a hidden cross-file ordering dependency.
 
