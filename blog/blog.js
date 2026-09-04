@@ -146,8 +146,15 @@ if (filterBtns.length) {
   }
 
   if (window.location.hash) {
-    // Let the browser's native scroll settle first.
-    window.addEventListener("load", () => setTimeout(highlightHash, 60));
+    // Fire once the page is ready (handle the case where load already fired),
+    // then again a beat later so the highlight is still going when the browser's
+    // smooth scroll to the anchor arrives.
+    const run = () => {
+      highlightHash();
+      setTimeout(highlightHash, 250);
+    };
+    if (document.readyState === "complete") run();
+    else window.addEventListener("load", run);
   }
   window.addEventListener("hashchange", highlightHash);
 })();

@@ -670,27 +670,24 @@ nav a:hover {
 }
 
 /* Transient highlight applied by blog.js when the page is opened at a #hash
-   anchor, so the reader can see exactly which section was linked. */
+   anchor, so the reader can see exactly which section was linked. Holds at
+   full strength for ~1.6s (long enough to survive the smooth scroll to the
+   anchor) then fades over ~2s. A background fade is not vestibular motion, so
+   it is kept even under prefers-reduced-motion. */
 .hash-target-highlight {
-  animation: hashTargetFade 2.8s ease-out 1;
+  animation: hashTargetFade 3.6s ease-out both;
   border-radius: 0.35rem;
 }
 
 @keyframes hashTargetFade {
   0%,
-  12% {
-    background-color: rgba(86, 156, 214, 0.26);
-    box-shadow: 0 0 0 0.45rem rgba(86, 156, 214, 0.26);
+  45% {
+    background-color: rgba(86, 156, 214, 0.35);
+    box-shadow: 0 0 0 0.5rem rgba(86, 156, 214, 0.35);
   }
   100% {
     background-color: transparent;
-    box-shadow: 0 0 0 0.45rem transparent;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hash-target-highlight {
-    animation: none;
+    box-shadow: 0 0 0 0.5rem transparent;
   }
 }
 
