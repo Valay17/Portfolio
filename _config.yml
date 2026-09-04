@@ -20,6 +20,11 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor/
+  - node_modules/
+  - .gitignore
+  # Pagefind writes its index into _site/pagefind/ *after* the Jekyll build,
+  # so it never needs listing here; this only guards a stray local copy.
+  - pagefind/
 
 # Markdown processor
 markdown: kramdown

@@ -31,10 +31,21 @@ jobs:
           ruby-version: "3.3"
           bundler-cache: true
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+
+      # Build the static search index over the generated site. Runs after Jekyll
+      # (needs _site) and before the artifact upload. Pin the version so a
+      # Pagefind release can't silently change indexing behaviour.
+      - name: Build search index (Pagefind)
+        run: npx -y pagefind@1.3.0 --site _site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5

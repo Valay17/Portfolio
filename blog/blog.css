@@ -404,6 +404,126 @@ nav a:hover {
   color: var(--muted-text);
 }
 
+/* [hidden] must win over the grid/flex display rules above when JS toggles it */
+[hidden] {
+  display: none !important;
+}
+
+/* ─── BLOG SEARCH ────────────────────────────────────────────────────────── */
+
+.blog-search {
+  margin-bottom: 1.4rem;
+}
+
+.blog-search-input {
+  width: 100%;
+  font-family: "Martian Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+  background: var(--code-bg);
+  border: 1px solid var(--container-border);
+  border-radius: 5px;
+  padding: 0.7rem 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.blog-search-input::placeholder {
+  color: var(--muted-text);
+}
+
+.blog-search-input:focus {
+  outline: none;
+  border-color: var(--secondary-color-2);
+}
+
+.search-results {
+  padding-top: 0.5rem;
+}
+
+.search-status {
+  font-family: "Martian Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-text);
+  padding: 0.75rem 1rem;
+}
+
+.search-result {
+  padding: 1.3rem 1rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  border-radius: 0.4rem;
+}
+
+.search-result:hover {
+  background: rgba(86, 156, 214, 0.07);
+}
+
+.search-result-title {
+  font-family: "Rhodium Libre", serif;
+  font-size: 1.15rem;
+  color: var(--secondary-color);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.search-result-title:hover {
+  color: var(--secondary-color-2);
+  text-decoration: underline;
+  text-underline-offset: 0.4rem;
+}
+
+.search-result-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0 0.7rem;
+}
+
+.search-result-date {
+  font-family: "Martian Mono", monospace;
+  font-size: 0.75rem;
+  color: var(--muted-text);
+}
+
+.search-excerpt {
+  font-family: "Rhodium Libre", serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--secondary-color);
+}
+
+.search-excerpt mark {
+  background: rgba(86, 156, 214, 0.28);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 0.1em;
+}
+
+.search-subs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin-top: 0.7rem;
+}
+
+.search-sub {
+  font-family: "Martian Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--secondary-color-2);
+  text-decoration: none;
+}
+
+.search-sub::before {
+  content: "# ";
+  opacity: 0.6;
+}
+
+.search-sub:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
 /* ─── INDIVIDUAL POST ─────────────────────────────────────────────────────── */
 
 .post-page {
@@ -490,6 +610,53 @@ nav a:hover {
   line-height: 1.85;
   color: var(--secondary-color);
   margin-bottom: 1.2rem;
+}
+
+/* Anchored headings: keep the target clear of the sticky navbar when a
+   #section deep link (e.g. a cross-post link from another article) jumps here. */
+.post-section h2,
+.post-section h3,
+.post-section h4 {
+  scroll-margin-top: 6rem;
+}
+
+/* Inline prose links — raw-HTML cross-post links and external references
+   written directly in post Markdown. */
+.post-body-content a {
+  color: var(--secondary-color-2);
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(86, 156, 214, 0.45);
+}
+
+.post-body-content a:hover {
+  text-decoration-color: var(--secondary-color-2);
+}
+
+/* Transient highlight applied by blog.js when the page is opened at a #hash
+   anchor, so the reader can see exactly which section was linked. */
+.hash-target-highlight {
+  animation: hashTargetFade 2.8s ease-out 1;
+  border-radius: 0.35rem;
+}
+
+@keyframes hashTargetFade {
+  0%,
+  12% {
+    background-color: rgba(86, 156, 214, 0.26);
+    box-shadow: 0 0 0 0.45rem rgba(86, 156, 214, 0.26);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: 0 0 0 0.45rem transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hash-target-highlight {
+    animation: none;
+  }
 }
 
 .post-section ul,

@@ -64,6 +64,20 @@
     <main class="post-list">
 
       {% if site.posts.size > 0 %}
+        <div class="blog-search">
+          <input
+            type="search"
+            id="blogSearch"
+            class="blog-search-input"
+            placeholder="Search posts…  ( press / )"
+            aria-label="Search posts"
+            autocomplete="off"
+            spellcheck="false"
+            data-pf-bundle="{{ site.baseurl }}/pagefind/pagefind.js"
+            data-pf-baseurl="{{ site.baseurl }}/"
+          />
+        </div>
+
         {% assign domains = site.posts | map: "domain" | uniq | sort %}
         <div class="domain-filters">
           <button class="filter-btn active" data-filter="all">All</button>
@@ -78,6 +92,8 @@
         <span>Title</span>
         <span class="col-date">Date</span>
       </div>
+
+      <div id="searchResults" class="search-results" hidden></div>
 
       {% if site.posts.size == 0 %}
         <p class="post-list-empty">No posts yet.</p>

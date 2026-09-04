@@ -61,15 +61,19 @@
 
       <header class="post-header">
         {% if page.domain %}
-          <a class="domain-tag domain-tag-link" href="{{ site.baseurl }}/blog/?domain={{ page.domain }}">{{ page.domain }}</a>
+          <a class="domain-tag domain-tag-link" href="{{ site.baseurl }}/blog/?domain={{ page.domain }}" data-pagefind-filter="domain" data-pagefind-meta="domain">{{ page.domain }}</a>
         {% endif %}
-        <h1 class="post-title">{{ page.title }}</h1>
-        <time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}">
+        <h1 class="post-title" data-pagefind-meta="title">{{ page.title }}</h1>
+        <time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}" data-pagefind-meta="date[datetime]">
           {{ page.date | date: "%B %-d, %Y" }}
         </time>
       </header>
 
-      <div class="post-body-content post-section">
+      <!-- data-pagefind-body: only post prose is indexed for search. Its
+           presence anywhere on the site also tells Pagefind to skip pages that
+           lack it (portfolio home, blog index). Kramdown heading IDs in the
+           body become Pagefind sub-results: deep links to the matched section. -->
+      <div class="post-body-content post-section" data-pagefind-body>
         {{ content }}
       </div>
 

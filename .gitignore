@@ -1,0 +1,17 @@
+# Jekyll build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Pagefind (search index is generated in CI, never committed)
+pagefind/
+
+# Ruby / Bundler
+.bundle/
+vendor/
+
+# Node (only used transiently by `npx pagefind`)
+node_modules/
+
+# OS / editor
+.DS_Store
