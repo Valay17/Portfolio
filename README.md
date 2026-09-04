@@ -44,14 +44,20 @@ Markdown for cross-post links:
 
 Search is fully static and runs entirely in the browser:
 
-- `_layouts/post.html` marks the indexable region with `data-pagefind-body` on
-  the `<article>`, tags `domain` as a filter + meta field, and exposes `title`
-  and `date` as meta. Nav, the back link, and the Links section are excluded
-  with `data-pagefind-ignore`. Only posts are indexed — pages without
-  `data-pagefind-body` (the portfolio home, the blog index) are skipped.
+- `_layouts/post.html` marks two indexable regions with `data-pagefind-body`:
+  the `<h1>` title (`data-pagefind-weight="10"`, so title matches rank first)
+  and `.post-body-content`. Body `h2`/`h3` keep Pagefind's default heading
+  weights (6/5), so heading matches outrank plain-paragraph matches. `domain`
+  is a filter + meta field; `title` and `date` are meta. Only posts are indexed
+  — pages without `data-pagefind-body` (portfolio home, blog index) are skipped.
+  Ranking can be tuned further at query time via `pagefind.options({ ranking })`
+  in `blog/blog.js`.
 - `.github/workflows/deploy.yml` runs `npx pagefind --site _site` after the
   Jekyll build, writing the index to `_site/pagefind/`, which ships in the Pages
-  artifact.
+  artifact. The index is rebuilt from scratch every deploy (Pagefind has no
+  incremental mode — indexing 25 posts takes milliseconds; the cost is the
+  one-time binary download, which `actions/cache` keyed on the pinned version
+  keeps to seconds after the first run).
 - `blog/blog.js` lazy-loads `pagefind.js` on first focus and renders results
   into the blog index. Bundle path and `baseUrl` are passed from Liquid via
   `data-pf-*` attributes so it works under the `/portfolio/` project-page path.

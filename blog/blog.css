@@ -412,6 +412,7 @@ nav a:hover {
 /* ─── BLOG SEARCH ────────────────────────────────────────────────────────── */
 
 .blog-search {
+  position: relative;
   margin-bottom: 1.4rem;
 }
 
@@ -423,7 +424,7 @@ nav a:hover {
   background: var(--code-bg);
   border: 1px solid var(--container-border);
   border-radius: 5px;
-  padding: 0.7rem 0.9rem;
+  padding: 0.7rem 2.4rem 0.7rem 0.9rem;
   transition: border-color 0.2s ease;
 }
 
@@ -431,9 +432,43 @@ nav a:hover {
   color: var(--muted-text);
 }
 
+/* hide the native "clear" affordance so it can't collide with the hint */
+.blog-search-input::-webkit-search-cancel-button {
+  display: none;
+}
+
 .blog-search-input:focus {
   outline: none;
   border-color: var(--secondary-color-2);
+}
+
+/* "/" keyboard hint, right-aligned inside the field — GitHub style */
+.blog-search-hint {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.35rem;
+  font-family: "Martian Mono", monospace;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--muted-text);
+  background: var(--background-color);
+  border: 1px solid var(--container-border);
+  border-radius: 4px;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+/* fade the hint out once the field is focused or has a query */
+.blog-search-input:focus ~ .blog-search-hint,
+.blog-search-input:not(:placeholder-shown) ~ .blog-search-hint {
+  opacity: 0;
 }
 
 .search-results {

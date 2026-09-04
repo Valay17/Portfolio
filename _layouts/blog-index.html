@@ -69,13 +69,14 @@
             type="search"
             id="blogSearch"
             class="blog-search-input"
-            placeholder="Search posts…  ( press / )"
+            placeholder="Search"
             aria-label="Search posts"
             autocomplete="off"
             spellcheck="false"
             data-pf-bundle="{{ site.baseurl }}/pagefind/pagefind.js"
             data-pf-baseurl="{{ site.baseurl }}/"
           />
+          <kbd class="blog-search-hint" aria-hidden="true">/</kbd>
         </div>
 
         {% assign domains = site.posts | map: "domain" | uniq | sort %}
