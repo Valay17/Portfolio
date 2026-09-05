@@ -5,7 +5,7 @@ date: 2026-09-03
 domain: compiler
 permalink: /blog/compiler/consteval/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/compiler/consteval"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/activity-7501325409104314372-o1Zd/"
 ---
 
 Call a `constexpr` function and it permits compile-time evaluation but does not require it but call it with a runtime argument and it runs at runtime, silently, with no indication in the source that anything went differently than expected. `consteval` closes that gap completely.

@@ -5,7 +5,7 @@ date: 2026-09-04
 domain: compiler
 permalink: /blog/compiler/constinit/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/compiler/constinit"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/activity-7501670473571794945-uObJ/"
 ---
 
 A variable can be guaranteed to start life with a compile-time value and still be completely mutable afterward. Those are two separate promises, and `constinit` only makes one of them.

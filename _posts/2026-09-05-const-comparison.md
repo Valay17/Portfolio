@@ -4,7 +4,6 @@ title: "const, constexpr, consteval, constinit: Four Keywords, Four Different Pr
 date: 2026-09-05
 domain: language
 permalink: /blog/language/const-comparison/
-github: "https://github.com/Valay17/Cpp-Journal/tree/main"
 linkedin: "https://linkedin.com/in/SaitwadekarValay"
 ---
 
