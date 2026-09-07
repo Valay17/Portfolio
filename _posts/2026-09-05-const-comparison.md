@@ -4,7 +4,7 @@ title: "const, constexpr, consteval, constinit: Four Keywords, Four Different Pr
 date: 2026-09-05
 domain: language
 permalink: /blog/language/const-comparison/
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7501848225734307840-jVyd/"
 ---
 
 Four keywords that all start with `const`, introduced across three different standard versions, each making a genuinely different promise. The names suggest they are variations on a theme. The semantics say otherwise.
