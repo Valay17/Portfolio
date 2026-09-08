@@ -5,7 +5,7 @@ date: 2026-09-07
 domain: cpu
 permalink: /blog/cpu/true-sharing/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/cpu/true-sharing"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/activity-7502757916605779968-gvNG/"
 ---
 
 Not all cache line sharing costs you anything. Some of it is completely free, and the line between free and expensive comes down to one thing: whether anyone writes.
