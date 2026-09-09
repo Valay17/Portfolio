@@ -107,12 +107,64 @@ free(m);   // raw bytes only, no destructor
 ```
 
 
-| Name | Syntax | Allocates | Constructs | Returns | On Failure | Cleanup | Header |
-|---|---|:---:|:---:|---|---|---|---|
-| Regular new | `new T(args)` | ✓ | ✓ | `T*` | throws `bad_alloc` | `delete` | none |
-| Operator new | `operator new(size)` | ✓ | ✗ | `void*` | throws `bad_alloc` | `operator delete` | none |
-| Placement new | `new (ptr) T(args)` | ✗ | ✓ | `T*` | constructor throws | `p->~T()` | `<new>` |
-| malloc | `malloc(size)` | ✓ | ✗ | `void*` | returns `nullptr` | `free` | `<cstdlib>` |
+<div style="overflow-x:auto;margin:16px 0;">
+<table style="width:100%;border-collapse:collapse;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;">
+<thead>
+<tr style="background:#161B22;border-bottom:2px solid #30363D;">
+<th style="padding:10px 12px;text-align:left;color:#E6EDF3;border:1px solid #30363D;white-space:nowrap;">Name</th>
+<th style="padding:10px 12px;text-align:left;color:#E6EDF3;border:1px solid #30363D;white-space:nowrap;">Syntax</th>
+<th style="padding:10px 12px;text-align:center;color:#E6EDF3;border:1px solid #30363D;white-space:nowrap;">Allocates</th>
+<th style="padding:10px 12px;text-align:center;color:#E6EDF3;border:1px solid #30363D;white-space:nowrap;">Constructs</th>
+<th style="padding:10px 12px;text-align:left;color:#E6EDF3;border:1px solid #30363D;white-space:nowrap;">Returns</th>
+<th style="padding:10px 12px;text-align:left;color:#E6EDF3;border:1px solid #30363D;white-space:nowrap;">On Failure</th>
+<th style="padding:10px 12px;text-align:left;color:#E6EDF3;border:1px solid #30363D;white-space:nowrap;">Cleanup</th>
+<th style="padding:10px 12px;text-align:left;color:#E6EDF3;border:1px solid #30363D;white-space:nowrap;">Header</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #21262D;">
+<td style="padding:9px 12px;color:#C9D1D9;border:1px solid #21262D;">Regular new</td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#58A6FF;font-size:12px;">new T(args)</code></td>
+<td style="padding:9px 12px;text-align:center;color:#3FB950;font-weight:700;border:1px solid #21262D;">✓</td>
+<td style="padding:9px 12px;text-align:center;color:#3FB950;font-weight:700;border:1px solid #21262D;">✓</td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#C9D1D9;font-size:12px;">T*</code></td>
+<td style="padding:9px 12px;color:#C9D1D9;border:1px solid #21262D;">throws <code style="background:#21262D;padding:2px 4px;border-radius:3px;font-size:12px;">bad_alloc</code></td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#C9D1D9;font-size:12px;">delete</code></td>
+<td style="padding:9px 12px;color:#8B949E;border:1px solid #21262D;">none</td>
+</tr>
+<tr style="border-bottom:1px solid #21262D;background:#0D111788;">
+<td style="padding:9px 12px;color:#C9D1D9;border:1px solid #21262D;">Operator new</td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#58A6FF;font-size:12px;">operator new(size)</code></td>
+<td style="padding:9px 12px;text-align:center;color:#3FB950;font-weight:700;border:1px solid #21262D;">✓</td>
+<td style="padding:9px 12px;text-align:center;color:#C0454A;font-weight:700;border:1px solid #21262D;">✗</td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#C9D1D9;font-size:12px;">void*</code></td>
+<td style="padding:9px 12px;color:#C9D1D9;border:1px solid #21262D;">throws <code style="background:#21262D;padding:2px 4px;border-radius:3px;font-size:12px;">bad_alloc</code></td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#C9D1D9;font-size:12px;">operator delete</code></td>
+<td style="padding:9px 12px;color:#8B949E;border:1px solid #21262D;">none</td>
+</tr>
+<tr style="border-bottom:1px solid #21262D;">
+<td style="padding:9px 12px;color:#C9D1D9;border:1px solid #21262D;">Placement new</td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#58A6FF;font-size:12px;">new (ptr) T(args)</code></td>
+<td style="padding:9px 12px;text-align:center;color:#C0454A;font-weight:700;border:1px solid #21262D;">✗</td>
+<td style="padding:9px 12px;text-align:center;color:#3FB950;font-weight:700;border:1px solid #21262D;">✓</td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#C9D1D9;font-size:12px;">T*</code></td>
+<td style="padding:9px 12px;color:#C9D1D9;border:1px solid #21262D;">constructor throws</td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#C9D1D9;font-size:12px;">p->~T()</code></td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 4px;border-radius:3px;font-size:12px;">&lt;new&gt;</code></td>
+</tr>
+<tr style="background:#0D111788;">
+<td style="padding:9px 12px;color:#C9D1D9;border:1px solid #21262D;">malloc</td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#58A6FF;font-size:12px;">malloc(size)</code></td>
+<td style="padding:9px 12px;text-align:center;color:#3FB950;font-weight:700;border:1px solid #21262D;">✓</td>
+<td style="padding:9px 12px;text-align:center;color:#C0454A;font-weight:700;border:1px solid #21262D;">✗</td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#C9D1D9;font-size:12px;">void*</code></td>
+<td style="padding:9px 12px;color:#C9D1D9;border:1px solid #21262D;">returns <code style="background:#21262D;padding:2px 4px;border-radius:3px;font-size:12px;">nullptr</code></td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 6px;border-radius:3px;color:#C9D1D9;font-size:12px;">free</code></td>
+<td style="padding:9px 12px;border:1px solid #21262D;"><code style="background:#21262D;padding:2px 4px;border-radius:3px;font-size:12px;">&lt;cstdlib&gt;</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 
 `operator new` and `malloc` both allocate raw bytes with no constructor. `new` calls `operator new` internally for its allocation step, then runs the constructor via placement new on the returned memory.
 
