@@ -562,7 +562,10 @@ nav a:hover {
 /* ─── INDIVIDUAL POST ─────────────────────────────────────────────────────── */
 
 .post-page {
-  max-width: 760px;
+  /* Rendered blog content width. Content column ≈ this value minus the
+     left/right padding below (2rem each ≈ 32px). Bump this up to make posts
+     wider, down to make them narrower. */
+  max-width: 960px;
   margin: 0 auto;
   padding: 3rem 2rem 8rem;
 }
