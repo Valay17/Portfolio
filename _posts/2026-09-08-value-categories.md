@@ -5,7 +5,7 @@ date: 2026-09-08
 domain: language
 permalink: /blog/language/value-categories/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/language/value-categories"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/activity-7503129044083740673-dJ7A/"
 ---
 
 The same variable, written twice in the same function, can trigger two different constructors. Nothing about the variable changed. What changed is how it was used, and the mechanism behind that is value categories.
