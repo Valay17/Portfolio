@@ -15,3 +15,5 @@ node_modules/
 
 # OS / editor
 .DS_Store
+
+sizes.txt

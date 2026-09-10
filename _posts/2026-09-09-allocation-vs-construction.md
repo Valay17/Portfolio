@@ -5,7 +5,7 @@ date: 2026-09-09
 domain: memory
 permalink: /blog/memory/allocation-vs-construction/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/memory/allocation-vs-construction"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/activity-7503482644052037632-v39W/"
 ---
 
 There are four ways to get memory in C++, and most people only ever use one. Then they write a custom allocator or a memory pool, and the difference between "allocate" and "construct" becomes the entire problem.
