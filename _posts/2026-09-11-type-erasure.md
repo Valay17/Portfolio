@@ -5,7 +5,7 @@ date: 2026-09-11
 domain: templates
 permalink: /blog/templates/type-erasure/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/templates/type-erasure"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7503954730889428992-tEhu/"
 ---
 
 `std::function` can hold a lambda, a raw function pointer, or a functor object with no shared base class between any of them. The mechanism that makes that possible is type erasure, and it is not compiler magic: it is a pattern you can write by hand in about twenty lines.
