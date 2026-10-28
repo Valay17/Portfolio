@@ -5,7 +5,7 @@ date: 2026-10-27
 domain: memory
 permalink: /blog/memory/allocators/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/memory/allocators"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7520682024366534656-8pJy/"
 ---
 
 Every container in the standard library asks an allocator for memory. The allocator is the object doing two jobs: handing out raw bytes on request and separately building objects in those bytes when the container asks. Keeping those two jobs separate is what makes `reserve` and `resize` behave differently, what lets `std::allocate_shared` collapse two heap allocations into one, and what makes a `std::pmr::vector` usable with a stack buffer without changing the container type at all.
