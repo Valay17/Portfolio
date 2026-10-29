@@ -5,7 +5,7 @@ date: 2026-10-28
 domain: memory
 permalink: /blog/memory/block-allocators/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/memory/block-allocators"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7521047713006886914-yx7O/"
 ---
 
 A program can have 100 MB of free memory and still have to grow by 400 MB to satisfy its next allocation. The memory is not lost. It is split into holes, and every hole is smaller than the request. A block allocator avoids this by never mixing sizes, and it does so with a free list that costs no extra memory.
