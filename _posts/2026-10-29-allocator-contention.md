@@ -5,7 +5,7 @@ date: 2026-10-29
 domain: memory
 permalink: /blog/memory/allocator-contention/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/memory/allocator-contention"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7521399016576937984-pu4v/"
 ---
 
 A queue built on atomics can promise that a stalled thread never stops the others from finishing their operations. The allocator it takes nodes from usually cannot make the same promise. With glibc, a node allocated on one thread and freed on another can end up behind the same lock the next allocation needs. Counting `futex` system calls shows where the waiting happens, and moving allocation out of the hot path removes it.
