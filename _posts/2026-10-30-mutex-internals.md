@@ -5,7 +5,7 @@ date: 2026-10-30
 domain: concurrency
 permalink: /blog/concurrency/mutex-internals/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/concurrency/mutex-internals"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/saitwadekarvalay_cpp-systems-lowlevel-share-7521748469775126528-_xG2/"
 ---
 
 On Linux with glibc, the state of a `std::mutex` is one 4-byte integer that is 0, 1 or 2. The difference between 1 and 2 decides whether unlocking has to call the kernel. The mutex does not keep a list of waiting threads. It keeps one fact, whether anyone is waiting, and lets the kernel remember who.
