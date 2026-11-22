@@ -5,7 +5,7 @@ date: 2026-11-05
 domain: compiler
 permalink: /blog/compiler/singleton-guard/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/compiler/singleton-guard"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/activity-7524154483484938240-8YBm"
 ---
 
 A function-local `static` is thread-safe since C++11, and the compiler pays for that guarantee with a hidden guard variable. Every call to the function loads it, tests it and branches. Give the object a `constexpr` constructor and the compiler builds it at compile time instead, so the guard, the check and the lock all disappear. This post follows the guard from the disassembly down into the runtime library and then shows what `constexpr` and `constinit` change.
