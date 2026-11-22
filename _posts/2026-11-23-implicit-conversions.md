@@ -4,7 +4,7 @@ title: "Integer Promotion and Implicit Conversions"
 date: 2026-11-23
 domain: language
 permalink: /blog/language/implicit-conversions/
-github: "https://github.com/Valay17/Cpp-Journal/tree/main/language/implicit-conversions"
+github: "https://github.com/Valay17/Cpp-Journal/tree/main/language/implicit-conversion"
 linkedin: "https://linkedin.com/in/SaitwadekarValay"
 ---
 
