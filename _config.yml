@@ -3,6 +3,10 @@ description: "C++ Engineer — Low-level systems, performance engineering."
 baseurl: ""   # overridden automatically by GitHub Actions at build time
 url: "https://Valay17.github.io"
 
+# Publish every post on the next build, whatever its date. Without this Jekyll skips posts dated in the
+# future (the builds run in UTC, so a post dated "tomorrow" in local time vanished until the next push).
+future: true
+
 # Post permalink structure: /blog/<domain>/<slug>/
 # Each post sets its own permalink in front matter.
 # Default fallback if permalink is omitted:
