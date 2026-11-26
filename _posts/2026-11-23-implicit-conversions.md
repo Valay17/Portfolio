@@ -5,7 +5,7 @@ date: 2026-11-23
 domain: language
 permalink: /blog/language/implicit-conversions/
 github: "https://github.com/Valay17/Cpp-Journal/tree/main/language/implicit-conversion"
-linkedin: "https://linkedin.com/in/SaitwadekarValay"
+linkedin: "https://www.linkedin.com/posts/activity-7530676884414767105-Iw4e/"
 ---
 
 Add two `uint8_t` values, 200 and 100, and the result is 300. A `uint8_t` tops out at 255, so where does the 300 fit? In an `int`. The operands never get added as 8-bit values. Operators in C++ work on a small set of types, and a value of any smaller type is converted before the operation runs. Most surprises with integers come from one of three places: the conversion that happens before the operator, the conversion that picks a common type for two different operands, and the conversion that happens when the result is stored.
